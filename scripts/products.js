@@ -464,7 +464,7 @@ const products = [
         category: "drinks",
         price: 6.25,
         description: "Traditional Peruvian purple corn drink with pineapple and spices.",
-        image: "./images/menu/chicha-morada.jpg",
+        image: "./images/menu/chicha-morada-vaso.jpg",
         available: true
     },
     {
@@ -473,7 +473,7 @@ const products = [
         category: "drinks",
         price: 20.83,
         description: "Large pitcher of traditional Peruvian purple corn drink.",
-        image: "./images/menu/jarra-de-chicha.jpg",
+        image: "./images/menu/jarra-chicha-morada.jpg",
         available: true
     },
     {
@@ -482,7 +482,7 @@ const products = [
         category: "drinks",
         price: 5.21,
         description: "Fresh passion fruit juice.",
-        image: "./images/menu/maracuya-juice.jpg",
+        image: "./images/menu/maracuya-juice-vaso.jpg",
         available: true
     },
     {
@@ -500,7 +500,7 @@ const products = [
         category: "drinks",
         price: 7.00,
         description: "Fresh papaya smoothie style juice.",
-        image: "./images/menu/papaya-juice.jpg",
+        image: "./images/menu/papaya-juice-vaso.jpg",
         available: true
     },
     {
