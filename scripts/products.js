@@ -424,7 +424,7 @@ const products = [
         category: "desserts",
         price: 10.00,
         description: "Peruvian cookies filled with dulce de leche.",
-        image: "./images/menu/alfajores-box-of-6.jpg",
+        image: "./images/menu/alfajores.jpg",
         available: true
     },
 
