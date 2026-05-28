@@ -238,7 +238,7 @@ const products = [
         category: "peruvian-classics",
         price: 22.00,
         description: "Peruvian pesto pasta served with crispy breaded steak.",
-        image: "./images/menu/tallarines-verdes-con-milanesa.jpg",
+        image: "./images/menu/tallarines-verdes-milanesa.jpg",
         available: true
     },
     {
@@ -247,7 +247,7 @@ const products = [
         category: "peruvian-classics",
         price: 26.04,
         description: "Peruvian-style stir-fried noodles with beef or chicken.",
-        image: "./images/menu/tallarines-saltados.jpg",
+        image: "./images/menu/tallarin-saltado.jpg",
         available: true
     },
     {
@@ -256,7 +256,7 @@ const products = [
         category: "peruvian-classics",
         price: 26.04,
         description: "Peruvian pesto pasta served with steak.",
-        image: "./images/menu/tallarines-verdes-con-bistec.jpg",
+        image: "./images/menu/tallarin-verde-bistec.jpg",
         available: true
     },
     {
@@ -319,7 +319,7 @@ const products = [
         category: "peruvian-classics",
         price: 28.13,
         description: "Traditional steak topped with fried egg, fries and rice.",
-        image: "./images/menu/bistec-a-lo-pobre.jpg",
+        image: "./images/menu/bistec-pobre.jpg",
         available: true
     },
     {
