@@ -1,3 +1,8 @@
+.social-icons a.tiktok-icon,
+.tiktok-icon .fa-tiktok {
+  color: #fff !important;
+}
+
 :root {
     --primary-color: #f39c12;
     --primary-dark: #e67e22;
