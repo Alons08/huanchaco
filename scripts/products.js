@@ -155,7 +155,7 @@ const products = [
         category: "seafood",
         price: 22.92,
         description: "Fresh fish marinated in lime juice with onions, cilantro, corn and sweet potato.",
-        image: "./images/menu/ceviche-de-pescado.jpg",
+        image: "./images/menu/ceviche-pescado.jpg",
         available: true
     },
     {
@@ -173,7 +173,7 @@ const products = [
         category: "seafood",
         price: 22.00,
         description: "Traditional spicy ceviche juice served with fresh seafood.",
-        image: "./images/menu/leche-de-tigre.jpg",
+        image: "./images/menu/leche-tigre.jpg",
         available: true
     },
     {
@@ -191,7 +191,7 @@ const products = [
         category: "seafood",
         price: 31.25,
         description: "Combination of ceviche, seafood rice and fried seafood.",
-        image: "./images/menu/trio-marino.jpg",
+        image: "./images/menu/trio-marino-pescado.jpg",
         available: true
     },
     {
@@ -527,7 +527,7 @@ const products = [
         category: "drinks",
         price: 3.13,
         description: "Popular Peruvian golden soda.",
-        image: "./images/menu/inca-kola.jpg",
+        image: "./images/menu/gaseosa-inka-500ml.jpg",
         available: true
     },
     {
@@ -536,7 +536,7 @@ const products = [
         category: "drinks",
         price: 6.25,
         description: "Large bottle of popular Peruvian golden soda.",
-        image: "./images/menu/inca-kola-large.jpg",
+        image: "./images/menu/gaseosa-inka-1l.jpg",
         available: true
     },
     {
