@@ -281,7 +281,7 @@ function addToCart(product, quantity = 1) {
     }
     
     updateCart();
-    showNotification(`${product.name} añadido al carrito (${quantity})`, 'success');
+    showNotification(`${product.name} added to cart (${quantity})`, 'success');
 }
 
 function updateCartItem(id, quantity) {
@@ -402,40 +402,40 @@ function submitOrder() {
         const pickupTime = form['pickup-time'].value;
         const notes = form['pickup-notes'].value.trim();
 
-        // Construir mensaje para recoger en el local
-        deliveryInfo = `🏠 *Recoger en el Local*\n` +
-                       `⏳ *Tiempo estimado:* ${pickupTime} minutos\n` +
-                      (notes ? `📝 *Observaciones:* ${notes}\n` : '');
+        // Build message for pickup
+        deliveryInfo = `🏠 *Pick Up at Restaurant*\n` +
+                       `⏳ *Estimated Time:* ${pickupTime} minutes\n` +
+                      (notes ? `📝 *Notes:* ${notes}\n` : '');
     } else if (deliveryType === 'delivery') {
         const address = form['delivery-address'].value.trim();
         const notes = form['delivery-notes'].value.trim();
 
-        // Construir mensaje para delivery
+        // Build message for delivery
         deliveryInfo = `🚚 *Delivery*\n` +
-                    `🗺️ *Dirección:* ${address}\n` +
-                    (notes ? `📝 *Observaciones:* ${notes}\n` : '');
+                    `🗺️ *Address:* ${address}\n` +
+                    (notes ? `📝 *Notes:* ${notes}\n` : '');
     }
 
-    // Construir mensaje para WhatsApp
-    let message = `¡Hola Los Gemelos! Quiero realizar el siguiente pedido:\n\n`;
-    message += `*DATOS DEL CLIENTE*\n`;
-    message += `🙍‍♂️ *Nombre:* ${customerName}\n`;
-    message += `📞 *Teléfono:* ${customerPhone}\n`;
-    message += `💳 *Método de Pago:* ${paymentMethod}\n\n`; // Método de pago solo aquí
+    // Build WhatsApp message
+    let message = `Hello Huanchaco! I would like to place the following order:\n\n`;
+    message += `*CUSTOMER DETAILS*\n`;
+    message += `🙍‍♂️ *Name:* ${customerName}\n`;
+    message += `📞 *Phone:* ${customerPhone}\n`;
+    message += `💳 *Payment Method:* ${paymentMethod}\n\n`;
 
-    message += `*DETALLES DE ENTREGA*\n`;
+    message += `*DELIVERY DETAILS*\n`;
     message += deliveryInfo + '\n';
 
-    message += `🍽️ *PEDIDO*\n`;
+    message += `🍽️ *ORDER*\n`;
     cart.forEach(item => {
-        message += `- ${item.product.name} (x${item.quantity}): S/${(item.product.price * item.quantity).toFixed(2)}\n`;
+        message += `- ${item.product.name} (x${item.quantity}): $${(item.product.price * item.quantity).toFixed(2)}\n`;
     });
 
-    message += `\n💰 *Total: S/${cart.reduce((sum, item) => sum + (item.product.price * item.quantity), 0).toFixed(2)}*\n`;
-    message += `\nPor favor, confirmen mi pedido. ¡Gracias!`;
+    message += `\n💰 *Total: $${cart.reduce((sum, item) => sum + (item.product.price * item.quantity), 0).toFixed(2)}*\n`;
+    message += `\nPlease confirm my order. Thank you!`;
             
     // Abrir WhatsApp 931088900 mio
-    const whatsappUrl = `https://wa.me/51961613910?text=${encodeURIComponent(message)}`; /*AQUI EL NUMERO*/
+    const whatsappUrl = `https://wa.me/19255051486?text=${encodeURIComponent(message)}`; /*AQUI EL NUMERO*/
     window.open(whatsappUrl, '_blank');
     
     hideCart(); //ocultar el carrito

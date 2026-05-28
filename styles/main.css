@@ -351,71 +351,7 @@ body {
     cursor: not-allowed;
 }
 
-/* Events Section */
-.events {
-    padding: 80px 0;
-}
 
-.event-container {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 30px;
-    justify-content: center;
-}
-
-.event-card {
-    max-width: 100%;
-    width: 100%;
-    margin: 20px 0;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    text-align: left;
-    background: #fff8f0;
-    border: 1px solid #ffe0b2;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
-    transition: all 0.3s ease;
-}
-
-.event-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
-}
-
-.event-icon {
-    flex: 0 0 60px;
-    font-size: 2rem;
-    color: var(--primary-color);
-    text-align: center;
-    margin-right: 20px;
-}
-
-.event-details {
-    flex: 1;
-}
-
-.event-details h3 {
-    font-family: 'Montserrat', sans-serif;
-    font-size: 1.5rem;
-    margin-bottom: 15px;
-    color: var(--black);
-}
-
-.event-details p {
-    margin-bottom: 15px;
-    color: var(--gray);
-}
-
-.event-time {
-    color: var(--primary-dark);
-    font-weight: 500;
-}
-
-.event-time i {
-    margin-right: 5px;
-}
 
 /* Contact Section */
 .contact {

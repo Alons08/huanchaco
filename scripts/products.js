@@ -225,7 +225,7 @@ function renderProducts(category = 'comidas') {
         menuItemsContainer.innerHTML = `
             <div class="no-products">
                 <i class="fas fa-utensils"></i>
-                <p>No hay productos disponibles en esta categoría</p>
+                <p>No products available in this category</p>
             </div>
         `;
         return;
@@ -251,7 +251,7 @@ function renderProducts(category = 'comidas') {
                         <button class="quantity-btn plus" data-id="${product.id}">+</button>
                     </div>
                     <button class="add-to-cart" data-id="${product.id}">
-                        Añadir al carrito
+                        Add to cart
                     </button>
                 </div>
                 ` : ''}

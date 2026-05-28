@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" type="image/png" href="images/logo-gemelos.png">
-    <title>Los Gemelos - Restaurante Campestre</title>
+    <link rel="icon" type="image/png" href="images/logo-huanchaco.png">
+    <title>Huanchaco Peruvian Food</title>
     <link rel="stylesheet" href="./styles/main.css">
     <link rel="stylesheet" href="./styles/animations.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
@@ -20,30 +20,30 @@
     </script>
 </head>
 <body>
-    <!-- Navbar importado -->
+    <!-- Imported Navbar -->
     <div id="navbar-placeholder"></div>
 
     <!-- Hero Section -->
     <section class="hero" id="home">
         <div class="hero-content">
-            <h1 class="hero-title">LOS GEMELOS</h1>
-            <p class="hero-subtitle">Sabores auténticos en un ambiente campestre</p>
+            <h1 class="hero-title">HUANCHACO PERUVIAN FOOD</h1>
+            <p class="hero-subtitle">Discover the true taste of Peru in every bite</p>
             <div class="hero-buttons">
-                <a href="#menu" class="btn btn-primary">Ver nuestra carta</a>
-                <a href="#contact" class="btn btn-outline">Contáctanos</a>
+                <a href="#menu" class="btn btn-primary">See Our Menu</a>
+                <a href="#contact" class="btn btn-outline">Contact Us</a>
             </div>
         </div>
     </section>
 
     <section class="about" id="about">
         <div class="container">
-            <h2 class="section-title">Nuestra Historia</h2>
+            <h2 class="section-title">Our Story</h2>
             <div class="about-content">
                 <div class="about-text">
-                    <p>Los Gemelos es un restaurante campestre que nació desde 2024 del amor por la comida criolla y la tradición familiar desde más de 40 años. Desde entonces, hemos servido platillos auténticos preparados con ingredientes frescos y recetas heredadas de generación en generación.</p>
+                    <p>We are a restaurant inspired by the flavors and traditions of Northern Peru. Every dish is made with love and authentic ingredients, bringing you closer to the true taste of Peru. At Huanchaco, we are proud to share our culture and traditions with every guest.</p>
                 </div>
                 <div class="about-image">
-                    <img src="./images/restaurant-exterior.jpg" alt="Exterior del restaurante" loading="lazy">
+                    <img src="./images/restaurant-exterior.jpg" alt="Restaurant exterior" loading="lazy">
                 </div>
             </div>
         </div>
@@ -52,33 +52,16 @@
     <!-- Menu Section -->
     <section class="menu" id="menu">
         <div class="container">
-            <h2 class="section-title">Nuestra Carta</h2>
-            <p class="section-subtitle">Deliciosos platos preparados con ingredientes frescos</p>
+            <h2 class="section-title">Our Menu</h2>
+            <p class="section-subtitle">Delicious dishes prepared with fresh ingredients</p>
             
             <div class="menu-filters">
-                <button class="filter-btn active" data-category="comidas">Comidas Criollas</button>
-                <button class="filter-btn" data-category="bebidas">Bebidas</button>
+                <button class="filter-btn active" data-category="comidas">Peruvian Dishes</button>
+                <button class="filter-btn" data-category="bebidas">Drinks</button>
             </div>
             
             <div class="menu-items" id="menu-items">
-                <!-- Los productos se cargarán dinámicamente desde JS -->
-            </div>
-        </div>
-    </section>
-
-    <!-- Events Section -->
-    <section class="events" id="events">
-        <div class="container">
-            <h2 class="section-title">Eventos Especiales</h2>
-            <div class="event-card">
-                <div class="event-icon">
-                    <i class="fas fa-music"></i>
-                </div>
-                <div class="event-details">
-                    <h3>Domingos Musicales</h3>
-                    <p>Todos los domingos disfruta de nuestra deliciosa comida criolla acompañada de música en vivo.</p>
-                    <p class="event-time"><i class="fas fa-clock"></i> 1:00 PM - 6:00 PM</p>
-                </div>
+                <!-- Products will be loaded dynamically from JS -->
             </div>
         </div>
     </section>
@@ -86,40 +69,44 @@
     <!-- Contact Section -->
     <section class="contact" id="contact">
         <div class="container">
-            <h2 class="section-title">Contáctanos</h2>
+            <h2 class="section-title">Contact Us</h2>
             <div class="contact-content">
                 <div class="contact-info">
                     <div class="info-item">
                         <i class="fas fa-map-marker-alt"></i>
-                        <p>La Campiña KM 5, Zona Rural</p>
+                        <p>609 1st street Brentwood California 94513</p>
                     </div>
                     <div class="info-item">
                         <i class="fas fa-phone"></i>
-                        <p><a href="tel:+51961613910">961 613 910</a></p>
+                        <p><a href="tel:+19255051486">+1 (925) 505-1486</a></p>
                     </div>
                     <div class="info-item">
                         <i class="fab fa-whatsapp"></i>
                         <p>
-                            <a href="https://wa.me/51961613910?text=Hola%2C%20quiero%20más%20información..." target="_blank">Enviar mensaje por WhatsApp</a>
+                            <a href="https://wa.me/19255051486?text=Hello%2C%20I%20want%20more%20information..." target="_blank">Send message via WhatsApp</a>
                         </p>
                     </div>
                     <div class="info-item">
                         <i class="fas fa-clock"></i>
-                        <p>Lunes: 7:00 AM - 6:00 PM</p>
+                        <p>Tuesday to Friday: 11 AM - 8 PM</p>
                     </div>
                     <div class="info-item">
                         <i class="fas fa-clock"></i>
-                        <p>Martes a Domingo: 10:00 AM - 6:00 PM</p>
+                        <p>Saturday: 9 AM - 8 PM</p>
+                    </div>
+                    <div class="info-item">
+                        <i class="fas fa-clock"></i>
+                        <p>Sunday: 9 AM - 6 PM</p>
                     </div>
                 </div>
                 <div class="contact-map">
-                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3940.253997399347!2d-78.5661334!3d-9.0405797!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x91ab81d9425e0e1d%3A0x70d58acc4a28810!2sRecreo%20campestre%20Los%20gemelos!5e0!3m2!1ses-419!2spe!4v1748244222588!5m2!1ses-419!2spe" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3146.9491658148986!2d-121.69684672464234!3d37.93161800311057!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x808ffe95b3fe6f37%3A0xb4f94c52cf66b2fa!2s609%201st%20St%2C%20Brentwood%2C%20CA%2094513%2C%20EE.%20UU.!5e0!3m2!1ses!2spe!4v1779996263327!5m2!1ses!2spe" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Footer importado -->
+    <!-- Imported Footer -->
     <div id="footer-placeholder"></div>
 
     <!-- Floating Cart Button -->
@@ -131,95 +118,91 @@
     <!-- Cart Modal -->
     <div class="cart-overlay" id="cart-overlay"></div>
     <div class="cart-container" id="cart-modal">
-        <!-- Paso 1: Vista del Carrito -->
+        <!-- Step 1: Cart View -->
         <div class="cart-step" id="cart-step-1">
             <div class="cart-header">
-                <h3>Tu Pedido</h3>
+                <h3>Your Order</h3>
                 <button class="close-cart" id="close-cart">&times;</button>
             </div>
             <div class="cart-items" id="cart-items">
-                <!-- Los items del carrito se agregarán aquí dinámicamente -->
+                <!-- Cart items will be added here dynamically -->
             </div>
             <div class="cart-footer">
                 <div class="cart-total">
                     <span>Total:</span>
-                    <span id="cart-total">S/0.00</span>
+                    <span id="cart-total">$0.00</span>
                 </div>
-                <button class="btn btn-primary" id="checkout">Realizar Pedido</button>
+                <button class="btn btn-primary" id="checkout">Checkout</button>
             </div>
         </div>
 
-        <!-- Paso 2: Formulario de Información -->
+        <!-- Step 2: Order Information Form -->
         <div class="cart-step" id="cart-step-2">
             <div class="cart-header">
                 <button class="back-to-cart" id="back-to-cart">
                     <i class="fas fa-arrow-left"></i>
                 </button>
-                <h3>Información del Pedido</h3>
+                <h3>Order Information</h3>
                 <button class="close-cart" id="close-cart-2">&times;</button>
             </div>
-            <!-- Dentro del cart-step-2, modifica el formulario así: -->
             <div class="customer-info">
                 <form id="order-form">
                     <div class="form-group">
-                        <label for="customer-name">Nombre *</label>
+                        <label for="customer-name">Name *</label>
                         <input type="text" id="customer-name" required>
                     </div>
                     <div class="form-group">
-                        <label for="customer-phone">Teléfono *</label>
+                        <label for="customer-phone">Phone *</label>
                         <input type="tel" id="customer-phone" required>
                     </div>
                     <div class="form-group">
-                        <label for="delivery-payment">Tipo de Pago *</label>
+                        <label for="delivery-payment">Payment Type *</label>
                         <div class="radio-group">
-                            <label><input type="radio" name="delivery-payment" value="Efectivo" required> Efectivo</label>
-                            <label><input type="radio" name="delivery-payment" value="Yape"> Yape</label>
-                            <label><input type="radio" name="delivery-payment" value="Plin"> Plin</label>
-                            <label><input type="radio" name="delivery-payment" value="Otro"> Tarjeta</label>
+                            <label><input type="radio" name="delivery-payment" value="Cash" required> Cash</label>
+                            <label><input type="radio" name="delivery-payment" value="Card"> Card</label>
+                            <label><input type="radio" name="delivery-payment" value="Apple Pay"> Apple Pay</label>
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="delivery-type">Tipo de Entrega *</label>
+                        <label for="delivery-type">Delivery Type *</label>
                         <select id="delivery-type" required>
-                            <option value="">Seleccionar</option>
-                            <option value="pickup">Recoger en el Local</option>
+                            <option value="">Select</option>
+                            <option value="pickup">Pick Up at Restaurant</option>
                             <option value="delivery">Delivery</option>
                         </select>
                     </div>
-                    
-                    <!-- Campos para Recoger en Local -->
+                    <!-- Fields for Pick Up -->
                     <div class="delivery-fields" id="pickup-fields">
                         <div class="form-group">
-                            <label for="pickup-time">Tiempo estimado para recoger *</label>
+                            <label for="pickup-time">Estimated Pick Up Time *</label>
                             <select id="pickup-time" required>
-                                <option value="">Seleccionar</option>
-                                <option value="20-25">20 - 25 minutos</option>
-                                <option value="25-30">25 - 30 minutos</option>
-                                <option value="30-plus">30 minutos a más</option>
+                                <option value="">Select</option>
+                                <option value="20-25">20 - 25 minutes</option>
+                                <option value="25-30">25 - 30 minutes</option>
+                                <option value="30-plus">30 minutes or more</option>
                             </select>
                         </div>
                         <div class="form-group">
-                            <label for="pickup-notes">Observaciones</label>
+                            <label for="pickup-notes">Notes</label>
                             <textarea id="pickup-notes" rows="2"></textarea>
                         </div>
                     </div>
-                    
-                    <!-- Campos para Delivery -->
+                    <!-- Fields for Delivery -->
                     <div class="delivery-fields" id="delivery-fields">
                         <div class="form-group">
-                            <label for="delivery-address">Dirección de Entrega *</label>
+                            <label for="delivery-address">Delivery Address *</label>
                             <input type="text" id="delivery-address">
                         </div>
                         <div class="form-group">
-                            <label for="delivery-notes">Observaciones</label>
+                            <label for="delivery-notes">Notes</label>
                             <textarea id="delivery-notes" rows="2"></textarea>
                         </div>
                     </div>
                 </form>
             </div>
             <div class="form-actions">
-                <button class="btn btn-outline" id="cancel-order">Cancelar</button>
-                <button class="btn btn-primary" id="submit-order">Enviar Pedido</button>
+                <button class="btn btn-outline" id="cancel-order">Cancel</button>
+                <button class="btn btn-primary" id="submit-order">Submit Order</button>
             </div>
         </div>
     </div>
