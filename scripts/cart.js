@@ -172,7 +172,7 @@ function hideCart() {
 // Ir al formulario de checkout
 function goToCheckout() {
     if (cart.length === 0) {
-        showNotification('El carrito está vacío', 'error');
+        showNotification('The cart is empty', 'error');
         return;
     }
     
@@ -380,7 +380,7 @@ function markFieldInvalid(field, message) {
 // Enviar pedido
 function submitOrder() {
     if (cart.length === 0) {
-        showNotification('El carrito está vacío', 'error');
+        showNotification('The cart is empty', 'error');
         return;
     }
     

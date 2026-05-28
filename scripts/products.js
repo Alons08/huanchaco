@@ -1,211 +1,598 @@
 // Array completo de productos
 const products = [
+    // --- PERUVIAN BREAKFAST ---
     {
-        id: 1,
-        name: "Picante de Cuy 1/2",
-        category: "comidas",
-        price: 45.00,
-        description: "Cuy frito acompañado de ajiaco de papa con trigo o arroz, y ensalada criolla.",
-        image: "./images/menu/picante-de-cuy.jpg",
-        available: true
-    },
-    {
-        id: 2,
-        name: "Chicharrón de Chancho",
-        category: "comidas",
-        price: 35.00,
-        description: "Crujiente chicharrón de cerdo servido con mote, cancha, yuca y salsa criolla.",
-        image: "./images/menu/chicharron-de-chancho.jpg",
-        available: true
-    },
-    {
-        id: 3,
-        name: "Frejolada de Pato",
-        category: "comidas",
-        price: 35.00,
-        description: "Tradicional frejolada de pato con arroz y menestra.",
-        image: "./images/menu/frejolada-de-pato.jpg",
-        available: true
-    },
-    {
-        id: 4,
-        name: "Cabrito Norteno",
-        category: "comidas",
-        price: 35.00,
-        description: "Exquisito cabrito preparado al estilo norteño con frijoles y yuca.",
-        image: "./images/menu/cabrito-norteno.jpg",
-        available: true
-    },
-    {
-        id: 5,
-        name: "Costillar",
-        category: "comidas",
-        price: 35.00,
-        description: "Costillar de res acompañado de yucas fritas y papas doradas con ensalada criolla y cremas. ",
-        image: "./images/menu/costillar.jpg",
-        available: true
-    },
-    {
-        id: 6,
-        name: "Pepian Pavita de Corral",
-        category: "comidas",
-        price: 35.00,
-        description: "Pavita criolla en salsa de pepian con arroz y yuca.",
-        image: "./images/menu/pepian-pavita.jpg",
-        available: true
-    },
-    {
-        id: 7,
-        name: "Caldo de Gallina",
-        category: "comidas",
+        id: 50,
+        name: "Plato Peruano Desayuno",
+        category: "peruvian-breakfast",
         price: 25.00,
-        description: "Reconfortante caldo de gallina acompañada de cancha, limón y cebolla china picada.",
-        image: "./images/menu/caldo-gallina.jpg",
+        description: "Traditional Peruvian breakfast platter served with tamal, crispy pork, fried sweet potato, onion relish and fresh bread.",
+        image: "./images/menu/plato-peruano-desayuno.jpg",
         available: true
     },
     {
-        id: 8,
-        name: "Ceviche",
-        category: "comidas",
-        price: 35.00,
-        description: "Fresco ceviche de pescado con leche de tigre o clásico, camote, choclo y cancha.",
-        image: "./images/menu/ceviche.jpg",
+        id: 51,
+        name: "Pan con Chicharrón",
+        category: "peruvian-breakfast",
+        price: 12.50,
+        description: "Traditional Peruvian sandwich with crispy pork, sweet potato and onion relish.",
+        image: "./images/menu/pan-con-chicharron.jpg",
         available: true
     },
     {
-        id: 9,
-        name: "Chicharrón de Pescado",
-        category: "comidas",
-        price: 35.00,
-        description: "chicharrón de pescado empanizado y frito, servido con yuca y ensalada.",
-        image: "./images/menu/chicharron-pescado.jpg",
+        id: 52,
+        name: "Pan con Pollo",
+        category: "peruvian-breakfast",
+        price: 10.00,
+        description: "Peruvian chicken sandwich with shredded chicken and creamy sauce.",
+        image: "./images/menu/pan-con-pollo.jpg",
         available: true
     },
     {
-        id: 10,
-        name: "Chancho a la Caja China",
-        category: "comidas",
+        id: 53,
+        name: "Humitas",
+        category: "peruvian-breakfast",
+        price: 6.00,
+        description: "Sweet Peruvian corn tamales wrapped in corn husks.",
+        image: "./images/menu/humitas.jpg",
+        available: true
+    },
+    {
+        id: 54,
+        name: "Tamales",
+        category: "peruvian-breakfast",
+        price: 10.00,
+        description: "Traditional Peruvian tamales filled with seasoned pork.",
+        image: "./images/menu/tamales.jpg",
+        available: true
+    },
+    {
+        id: 55,
+        name: "Chicharrón con Mote y Zarza",
+        category: "peruvian-breakfast",
+        price: 18.00,
+        description: "Crispy fried pork served with Peruvian corn and onion salad.",
+        image: "./images/menu/chicharron-con-mote-y-zarza.jpg",
+        available: true
+    },
+    {
+        id: 56,
+        name: "Salchipapa",
+        category: "peruvian-breakfast",
+        price: 10.42,
+        description: "French fries topped with sliced hot dogs and sauces.",
+        image: "./images/menu/salchipapa.jpg",
+        available: true
+    },
+    {
+        id: 57,
+        name: "Salchipollo",
+        category: "peruvian-breakfast",
+        price: 18.75,
+        description: "French fries topped with crispy chicken and house sauces.",
+        image: "./images/menu/salchipollo.jpg",
+        available: true
+    },
+    {
+        id: 58,
+        name: "Salchihuevo",
+        category: "peruvian-breakfast",
+        price: 15.63,
+        description: "French fries with hot dogs and fried eggs.",
+        image: "./images/menu/salchihuevo.jpg",
+        available: true
+    },
+
+    // --- APPETIZERS ---
+    {
+        id: 59,
+        name: "Papa a la Huancaína",
+        category: "appetizers",
+        price: 12.50,
+        description: "Boiled potatoes topped with creamy Peruvian yellow pepper cheese sauce.",
+        image: "./images/menu/papa-a-la-huancaina.jpg",
+        available: true
+    },
+    {
+        id: 60,
+        name: "Papa Rellena",
+        category: "appetizers",
+        price: 12.50,
+        description: "Stuffed potato filled with seasoned beef and fried until crispy.",
+        image: "./images/menu/papa-rellena.jpg",
+        available: true
+    },
+    {
+        id: 61,
+        name: "Causa Limeña",
+        category: "appetizers",
+        price: 12.50,
+        description: "Layered cold potato dish with chicken or seafood filling.",
+        image: "./images/menu/causa-limena.jpg",
+        available: true
+    },
+    {
+        id: 62,
+        name: "Yuca Frita",
+        category: "appetizers",
+        price: 7.29,
+        description: "Crispy fried cassava served with dipping sauce.",
+        image: "./images/menu/yuca-frita.jpg",
+        available: true
+    },
+    {
+        id: 63,
+        name: "Yuca con Huancaína",
+        category: "appetizers",
+        price: 15.63,
+        description: "Fried cassava topped with creamy huancaína sauce.",
+        image: "./images/menu/yuca-con-huancaina.jpg",
+        available: true
+    },
+    {
+        id: 64,
+        name: "Empanadas",
+        category: "appetizers",
+        price: 8.33,
+        description: "Golden baked pastries stuffed with beef or chicken.",
+        image: "./images/menu/empanadas.jpg",
+        available: true
+    },
+    {
+        id: 65,
+        name: "Plátanos Fritos",
+        category: "appetizers",
+        price: 6.25,
+        description: "Sweet fried plantains served hot.",
+        image: "./images/menu/platanos-fritos.jpg",
+        available: true
+    },
+
+    // --- SEAFOOD ---
+    {
+        id: 66,
+        name: "Ceviche de Pescado",
+        category: "seafood",
+        price: 22.92,
+        description: "Fresh fish marinated in lime juice with onions, cilantro, corn and sweet potato.",
+        image: "./images/menu/ceviche-de-pescado.jpg",
+        available: true
+    },
+    {
+        id: 67,
+        name: "Ceviche Mixto",
+        category: "seafood",
+        price: 26.04,
+        description: "Fresh fish and seafood marinated in lime juice with traditional Peruvian flavors.",
+        image: "./images/menu/ceviche-mixto.jpg",
+        available: true
+    },
+    {
+        id: 68,
+        name: "Leche de Tigre",
+        category: "seafood",
+        price: 22.00,
+        description: "Traditional spicy ceviche juice served with fresh seafood.",
+        image: "./images/menu/leche-de-tigre.jpg",
+        available: true
+    },
+    {
+        id: 69,
+        name: "Jalea",
+        category: "seafood",
+        price: 31.25,
+        description: "Crispy mixed seafood served with yuca and salsa criolla.",
+        image: "./images/menu/jalea.jpg",
+        available: true
+    },
+    {
+        id: 70,
+        name: "Trío Marino",
+        category: "seafood",
+        price: 31.25,
+        description: "Combination of ceviche, seafood rice and fried seafood.",
+        image: "./images/menu/trio-marino.jpg",
+        available: true
+    },
+    {
+        id: 71,
+        name: "Parihuela",
+        category: "seafood",
         price: 30.00,
-        description: "Chancho cocinado en caja china con ensalada y papas y camote sanchochados.",
-        image: "./images/menu/chancho-caja-china.jpg",
+        description: "Traditional Peruvian seafood soup with rich coastal flavors.",
+        image: "./images/menu/parihuela.jpg",
         available: true
     },
     {
-        id: 11,
-        name: "Chuleta de Chancho",
-        category: "comidas",
+        id: 72,
+        name: "Pescado Frito",
+        category: "seafood",
+        price: 22.92,
+        description: "Crispy fried fish served with rice, yuca and tartar sauce.",
+        image: "./images/menu/pescado-frito.jpg",
+        available: true
+    },
+    {
+        id: 73,
+        name: "Causa Acevichada",
+        category: "seafood",
         price: 30.00,
-        description: "Chuleta de cerdo a la parrilla con choclo y papas sanchochadas.",
-        image: "./images/menu/chuleta-chancho.jpg",
+        description: "Peruvian causa topped with fresh ceviche.",
+        image: "./images/menu/causa-acevichada.jpg",
+        available: true
+    },
+
+    // --- PERUVIAN CLASSICS ---
+    {
+        id: 74,
+        name: "Lomo Saltado",
+        category: "peruvian-classics",
+        price: 26.04,
+        description: "Traditional Peruvian filet mignon stir-fried with onions, tomatoes, fries and rice.",
+        image: "./images/menu/lomo-saltado.jpg",
         available: true
     },
     {
-        id: 12,
-        name: "Shambar",
-        category: "comidas",
+        id: 75,
+        name: "Tallarines Verdes con Milanesa",
+        category: "peruvian-classics",
+        price: 22.00,
+        description: "Peruvian pesto pasta served with crispy breaded steak.",
+        image: "./images/menu/tallarines-verdes-con-milanesa.jpg",
+        available: true
+    },
+    {
+        id: 76,
+        name: "Tallarines Saltados",
+        category: "peruvian-classics",
+        price: 26.04,
+        description: "Peruvian-style stir-fried noodles with beef or chicken.",
+        image: "./images/menu/tallarines-saltados.jpg",
+        available: true
+    },
+    {
+        id: 77,
+        name: "Tallarines Verdes con Bistec",
+        category: "peruvian-classics",
+        price: 26.04,
+        description: "Peruvian pesto pasta served with steak.",
+        image: "./images/menu/tallarines-verdes-con-bistec.jpg",
+        available: true
+    },
+    {
+        id: 78,
+        name: "Ají de Gallina",
+        category: "peruvian-classics",
+        price: 22.00,
+        description: "Shredded chicken in creamy yellow pepper sauce served with rice and potatoes.",
+        image: "./images/menu/aji-de-gallina.jpg",
+        available: true
+    },
+    {
+        id: 79,
+        name: "Pollo Saltado",
+        category: "peruvian-classics",
+        price: 20.00,
+        description: "Peruvian stir-fried chicken with onions, tomatoes, fries and rice.",
+        image: "./images/menu/pollo-saltado.jpg",
+        available: true
+    },
+    {
+        id: 80,
+        name: "Pollada",
+        category: "peruvian-classics",
+        price: 20.00,
+        description: "Peruvian-style roasted chicken served with rice and salad.",
+        image: "./images/menu/pollada.jpg",
+        available: true
+    },
+    {
+        id: 81,
+        name: "Mostrito",
+        category: "peruvian-classics",
+        price: 26.04,
+        description: "Peruvian chaufa rice served with crispy chicken.",
+        image: "./images/menu/mostrito.jpg",
+        available: true
+    },
+    {
+        id: 82,
+        name: "Milanesa",
+        category: "peruvian-classics",
+        price: 18.75,
+        description: "Breaded crispy steak served with fries and rice.",
+        image: "./images/menu/milanesa.jpg",
+        available: true
+    },
+    {
+        id: 83,
+        name: "Lomo a lo Pobre",
+        category: "peruvian-classics",
+        price: 28.13,
+        description: "Steak served with rice, fries, fried egg and sweet plantains.",
+        image: "./images/menu/lomo-a-lo-pobre.jpg",
+        available: true
+    },
+    {
+        id: 84,
+        name: "Bistec a lo Pobre",
+        category: "peruvian-classics",
+        price: 28.13,
+        description: "Traditional steak topped with fried egg, fries and rice.",
+        image: "./images/menu/bistec-a-lo-pobre.jpg",
+        available: true
+    },
+    {
+        id: 85,
+        name: "Tallarín a la Huancaína con Lomo",
+        category: "peruvian-classics",
+        price: 25.00,
+        description: "Creamy huancaína pasta served with lomo steak.",
+        image: "./images/menu/tallarin-a-la-huancaina-con-lomo.jpg",
+        available: true
+    },
+
+    // --- TRADITIONAL SPECIALS ---
+    {
+        id: 86,
+        name: "Arroz con Pato",
+        category: "traditional-specials",
+        price: 25.00,
+        description: "Traditional Peruvian cilantro rice slowly cooked with duck and rich northern flavors.",
+        image: "./images/menu/arroz-con-pato.jpg",
+        available: true
+    },
+    {
+        id: 87,
+        name: "Arroz con Chancho",
+        category: "traditional-specials",
+        price: 22.00,
+        description: "Seasoned Peruvian rice served with tender slow-cooked pork and salsa criolla.",
+        image: "./images/menu/arroz-con-chancho.jpg",
+        available: true
+    },
+    {
+        id: 88,
+        name: "Seco a la Norteña",
+        category: "traditional-specials",
+        price: 26.04,
+        description: "Slow-cooked beef stew with cilantro served with beans and rice.",
+        image: "./images/menu/seco-a-la-nortena.jpg",
+        available: true
+    },
+
+    // --- POLLO A LA BRASA ---
+    {
+        id: 89,
+        name: "Pollo a la Brasa (Whole)",
+        category: "pollo-a-la-brasa",
+        price: 37.99,
+        description: "Whole Peruvian rotisserie chicken served with fries and salad.",
+        image: "./images/menu/pollo-a-la-brasa-whole.jpg",
+        available: true
+    },
+    {
+        id: 90,
+        name: "Pollo a la Brasa (Half)",
+        category: "pollo-a-la-brasa",
+        price: 24.99,
+        description: "Half Peruvian rotisserie chicken served with fries and salad.",
+        image: "./images/menu/pollo-a-la-brasa-half.jpg",
+        available: true
+    },
+    {
+        id: 91,
+        name: "Pollo a la Brasa (Quarter)",
+        category: "pollo-a-la-brasa",
+        price: 13.99,
+        description: "Quarter Peruvian rotisserie chicken served with fries and salad.",
+        image: "./images/menu/pollo-a-la-brasa-quarter.jpg",
+        available: true
+    },
+
+    // --- DESSERTS ---
+    {
+        id: 92,
+        name: "Tres Leches",
+        category: "desserts",
+        price: 8.33,
+        description: "Classic sponge cake soaked in three kinds of milk.",
+        image: "./images/menu/tres-leches.jpg",
+        available: true
+    },
+    {
+        id: 93,
+        name: "Churros",
+        category: "desserts",
+        price: 8.33,
+        description: "Warm fried dough sticks coated with cinnamon sugar.",
+        image: "./images/menu/churros.jpg",
+        available: true
+    },
+    {
+        id: 94,
+        name: "Lucuma Ice Cream",
+        category: "desserts",
+        price: 8.00,
+        description: "Traditional Peruvian lucuma flavored ice cream.",
+        image: "./images/menu/lucuma-ice-cream.jpg",
+        available: true
+    },
+    {
+        id: 95,
+        name: "Alfajores (Box of 6)",
+        category: "desserts",
+        price: 10.00,
+        description: "Peruvian cookies filled with dulce de leche.",
+        image: "./images/menu/alfajores-box-of-6.jpg",
+        available: true
+    },
+
+    // --- KIDS MENU ---
+    {
+        id: 96,
+        name: "Tallarín Verde Niño",
+        category: "kids-menu",
         price: 15.00,
-        description: "Tradicional sopa norteña preparada con trigo, menestras, carne y tocino.",
-        image: "./images/menu/shambar.jpg",
-        available: false
-    },
-        /* BEBIDASSSSSSSSS */
-    {
-        id: 101,
-        name: "Agua Mineral",
-        category: "bebidas",
-        price: 2.00,
-        description: "Agua mineral sin gas de 625ml.",
-        image: "./images/menu/agua-mineral.jpg",
+        description: "Kids size Peruvian pesto pasta.",
+        image: "./images/menu/tallarin-verde-nino.jpg",
         available: true
     },
     {
-        id: 102,
-        name: "Gaseosa Coca Cola 1/2L",
-        category: "bebidas",
-        price: 4.00,
-        description: "Sabor único y refrescante en la presentación de medio litro.",
-        image: "./images/menu/gaseosa-coca-500ml.jpg",
+        id: 97,
+        name: "Pescadito Kids",
+        category: "kids-menu",
+        price: 15.00,
+        description: "Kids fried fish served with fries.",
+        image: "./images/menu/pescadito-kids.jpg",
         available: true
     },
     {
-        id: 103,
-        name: "Gaseosa Inca Kola 1/2L",
-        category: "bebidas",
-        price: 4.00,
-        description: "Dulce y auténtica bebida peruana en la presentación de medio litro.",
-        image: "./images/menu/gaseosa-inka-500ml.jpg",
+        id: 98,
+        name: "Pollito con Papas",
+        category: "kids-menu",
+        price: 12.00,
+        description: "Chicken and fries kids combo.",
+        image: "./images/menu/pollito-con-papas.jpg",
         available: true
     },
+
+    // --- DRINKS ---
     {
-        id: 104,
-        name: "Gaseosa Pepsi 1/2L",
-        category: "bebidas",
-        price: 4.00,
-        description: "Refrescante con un sabor inconfundible en la presentación de medio litro.",
-        image: "./images/menu/gaseosa-pepsi-500ml.jpg",
-        available: true
-    }, 
-    {
-        id: 105,
-        name: "Gaseosas Coca Cola 1L",
-        category: "bebidas",
-        price: 8.00,
-        description: "Refrescante y con un sabor único en la presentación de un litro.",
-        image: "./images/menu/gaseosa-coca-1l.jpg",
-        available: true
-    },
-    {
-        id: 106,
-        name: "Gaseosas Inca Kola 1L",
-        category: "bebidas",
-        price: 8.00,
-        description: "Dulce y auténtica bebida peruana en la presentación de un litro.",
-        image: "./images/menu/gaseosa-inka-1l.jpg",
-        available: true
-    },
-    {
-        id: 107,
-        name: "Gaseosas Pepsi 1L",
-        category: "bebidas",
-        price: 8.00,
-        description: "Refrescante con un sabor inconfundible en la presentación de un litro.",
-        image: "./images/menu/gaseosa-pepsi-1l.jpg",
-        available: true
-    },
-    {
-        id: 108,
+        id: 99,
         name: "Chicha Morada",
-        category: "bebidas",
-        price: 15.00,
-        description: "Refrescante bebida peruana hecha con maíz morado, frutas y especias.",
+        category: "drinks",
+        price: 6.25,
+        description: "Traditional Peruvian purple corn drink with pineapple and spices.",
         image: "./images/menu/chicha-morada.jpg",
         available: true
     },
     {
-        id: 109,
-        name: "Cerveza Pilsen",
-        category: "bebidas",
-        price: 9.00,
-        description: "Refrescante cerveza nacional, perfecta para acompañar tus comidas.",
-        image: "./images/menu/cerveza-pilsen.jpg",
+        id: 100,
+        name: "Jarra de Chicha",
+        category: "drinks",
+        price: 20.83,
+        description: "Large pitcher of traditional Peruvian purple corn drink.",
+        image: "./images/menu/jarra-de-chicha.jpg",
         available: true
     },
     {
+        id: 101,
+        name: "Maracuyá Juice",
+        category: "drinks",
+        price: 5.21,
+        description: "Fresh passion fruit juice.",
+        image: "./images/menu/maracuya-juice.jpg",
+        available: true
+    },
+    {
+        id: 102,
+        name: "Jarra de Maracuya",
+        category: "drinks",
+        price: 20.83,
+        description: "Large pitcher of passion fruit juice.",
+        image: "./images/menu/jarra-de-maracuya.jpg",
+        available: true
+    },
+    {
+        id: 103,
+        name: "Papaya Juice",
+        category: "drinks",
+        price: 7.00,
+        description: "Fresh papaya smoothie style juice.",
+        image: "./images/menu/papaya-juice.jpg",
+        available: true
+    },
+    {
+        id: 104,
+        name: "Strawberry Milk Juice",
+        category: "drinks",
+        price: 8.00,
+        description: "Fresh strawberry drink blended with milk.",
+        image: "./images/menu/strawberry-milk-juice.jpg",
+        available: true
+    },
+    {
+        id: 105,
+        name: "Fresh Juice",
+        category: "drinks",
+        price: 8.00,
+        description: "Fresh blended fruit juice.",
+        image: "./images/menu/fresh-juice.jpg",
+        available: true
+    },
+    {
+        id: 106,
+        name: "Inca Kola",
+        category: "drinks",
+        price: 3.13,
+        description: "Popular Peruvian golden soda.",
+        image: "./images/menu/inca-kola.jpg",
+        available: true
+    },
+    {
+        id: 107,
+        name: "Inca Kola Large",
+        category: "drinks",
+        price: 6.25,
+        description: "Large bottle of popular Peruvian golden soda.",
+        image: "./images/menu/inca-kola-large.jpg",
+        available: true
+    },
+    {
+        id: 108,
+        name: "Jarritos",
+        category: "drinks",
+        price: 4.00,
+        description: "Mexican fruit flavored soda.",
+        image: "./images/menu/jarritos.jpg",
+        available: true
+    },
+    {
+        id: 109,
+        name: "Kola Inglesa",
+        category: "drinks",
+        price: 5.00,
+        description: "Traditional Peruvian red soda.",
+        image: "./images/menu/kola-inglesa.jpg",
+        available: true
+    },
+
+    // --- EXTRAS & SIDES ---
+    {
         id: 110,
-        name: "Cerveza Cusqueña Trigo",
-        category: "bebidas",
-        price: 10.00,
-        description: "Cerveza artesanal de trigo con un sabor suave y único.",
-        image: "./images/menu/cerveza-trigo.jpg",
+        name: "Extra Ají",
+        category: "extras-sides",
+        price: 1.50,
+        description: "Side of homemade spicy Peruvian sauce.",
+        image: "./images/menu/extra-aji.jpg",
         available: true
     },
     {
         id: 111,
-        name: "Cerveza Cusqueña Negra",
-        category: "bebidas",
-        price: 10.00,
-        description: "Cerveza negra con notas de malta tostada y un sabor intenso.",
-        image: "./images/menu/cerveza-negra.jpg",
+        name: "Side of Rice",
+        category: "extras-sides",
+        price: 5.00,
+        description: "Steamed white rice.",
+        image: "./images/menu/side-of-rice.jpg",
+        available: true
+    },
+    {
+        id: 112,
+        name: "Side of Huancaína",
+        category: "extras-sides",
+        price: 7.00,
+        description: "Extra creamy huancaína sauce.",
+        image: "./images/menu/side-of-huancaina.jpg",
+        available: true
+    },
+    {
+        id: 113,
+        name: "French Fries",
+        category: "extras-sides",
+        price: 5.21,
+        description: "Side of crispy fries.",
+        image: "./images/menu/french-fries.jpg",
         available: true
     }
 ];
@@ -213,7 +600,7 @@ const products = [
 // Hacer el array accesible globalmente
 window.restaurantProducts = products;
 
-function renderProducts(category = 'comidas') {
+function renderProducts(category = 'peruvian-breakfast') {
     const menuItemsContainer = document.getElementById('menu-items');
     if (!menuItemsContainer) return;
 
@@ -320,7 +707,7 @@ function setupProductEvents() {
 }
 
 function initProducts() {
-    renderProducts('comidas');
+    renderProducts('peruvian-breakfast');
     setupFilters();
     setupProductEvents();
 }
