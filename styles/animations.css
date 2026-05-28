@@ -1,0 +1,87 @@
+/* Animations */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes fadeInDown {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.05);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+/* Animation Classes */
+.fade-in {
+    animation: fadeIn 1s ease;
+}
+
+.fade-in-down {
+    animation: fadeInDown 1s ease;
+}
+
+.fade-in-up {
+    animation: fadeInUp 1s ease;
+}
+
+.pulse {
+    animation: pulse 2s infinite;
+}
+
+/* Scroll Animations */
+[data-animate] {
+    opacity: 0;
+    transition: all 0.6s ease;
+}
+
+[data-animate="fade-in"] {
+    transform: translateY(20px);
+}
+
+[data-animate].animate {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Hero Animation */
+.hero {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 1s ease-out, transform 1s ease-out;
+}
+
+.hero.loaded {
+    opacity: 1;
+    transform: translateY(0);
+}
