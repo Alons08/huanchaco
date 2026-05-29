@@ -156,6 +156,15 @@ const products = [
         image: "./images/menu/anticuchos.jpg",
         available: true
     },
+    {
+        id: 5,
+        name: "Picarones",
+        category: "appetizers",
+        price: 10.00,
+        description: "Freshly made Peruvian sweet potato & squash donuts drizzled with homemade chancaca syrup. Crispy outside, soft inside — the perfect sweet treat at  Huanchaco Peruvian Food.",
+        image: "./images/menu/picarones.jpg",
+        available: true
+    },
 
     // --- SEAFOOD ---
     {
@@ -354,7 +363,7 @@ const products = [
         name: "Arroz Chaufa",
         category: "peruvian-classics",
         price: 26.04,
-        description: "Peruvian fried rice.",
+        description: "Peruvian fried rice. Choice of chicken, beef, or seafood.",
         image: "./images/menu/chaufa-pollo.jpg",
         available: true
     },

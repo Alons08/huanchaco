@@ -4,8 +4,8 @@
 }
 
 :root {
-    --primary-color: #b9954a;
-    --primary-dark: #8a6f2a;
+    --primary-color: #be9f50;
+    --primary-dark: #be9f50;
     --white: #ffffff;
     --black: #333333;
     --gray: #777777;
@@ -27,6 +27,7 @@ body {
     color: var(--black);
     line-height: 1.6;
     overflow-x: hidden;
+    background-color: #102030;
 }
 
 .container {
@@ -39,8 +40,8 @@ body {
 /* Hero Section */
 .hero {
     height: 100vh;
-    /* background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('../images/hero-bg.jpg') center/cover no-repeat; */    
-    background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('https://images.pexels.com/photos/12034465/pexels-photo-12034465.jpeg?auto=compress&cs=tinysrgb&w=1920&h=1080&fit=crop') center/cover no-repeat;
+    background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('../images/hero-bg.jpg') center/cover no-repeat; 
+    /*background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('https://images.pexels.com/photos/12034465/pexels-photo-12034465.jpeg?auto=compress&cs=tinysrgb&w=1920&h=1080&fit=crop') center/cover no-repeat;*/
     display: flex;
     align-items: center;
     justify-content: center;
@@ -133,7 +134,7 @@ body {
 .section-subtitle {
     font-size: 1.2rem;
     text-align: center;
-    color: var(--gray);
+    color: #fff !important;
     margin-bottom: 40px;
 }
 
@@ -141,6 +142,7 @@ body {
 .about {
     padding: 80px 0;
     text-align: center;
+    color: #fff;
 }
 
 .about-content {
@@ -163,6 +165,7 @@ body {
     margin-bottom: 20px;
     font-size: 1.1rem;
     text-align: left;
+    color: #fff;
 }
 
 .about-image {
@@ -180,7 +183,8 @@ body {
 .menu {
     padding: 80px 0;
     text-align: center;
-    background-color: var(--background-light);
+    background-color: #102030;
+    color: #fff;
 }
 
 .menu-filters {
@@ -362,7 +366,8 @@ body {
 .contact {
     padding: 80px 0;
     text-align: center;
-    background-color: var(--background-light);
+    background-color: #102030;
+    color: #fff;
 }
 
 .contact-content {
@@ -376,6 +381,7 @@ body {
     margin-bottom: 20px;
     text-align: center;
     width: 100%;
+    color: #fff;
 }
 
 .info-item {
@@ -392,7 +398,7 @@ body {
 }
 
 .info-item a {
-    color: var(--black);
+    color: #fff;
     text-decoration: none;
     transition: color 0.3s;
 }
@@ -1137,10 +1143,10 @@ body {
     }
 
     .section-subtitle {
-        font-size: 1rem;
-    }
-
-    .menu-items {
+        font-size: 1.2rem;
+        text-align: center;
+        color: #fff;
+        margin-bottom: 40px;
         grid-template-columns: 1fr;
     }
     
