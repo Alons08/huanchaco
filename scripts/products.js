@@ -636,13 +636,16 @@ const products = [
 // Hacer el array accesible globalmente
 window.restaurantProducts = products;
 
-function renderProducts(category = 'peruvian-breakfast') {
+function renderProducts(category = 'all') {  // Cambiar valor por defecto a 'all'
     const menuItemsContainer = document.getElementById('menu-items');
     if (!menuItemsContainer) return;
 
     menuItemsContainer.innerHTML = '';
 
-    const filteredProducts = products.filter(product => product.category === category);
+    // Si category es 'all', mostrar todos; si no, filtrar
+    const filteredProducts = category === 'all' 
+        ? products 
+        : products.filter(product => product.category === category);
 
     if (filteredProducts.length === 0) {
         menuItemsContainer.innerHTML = `
@@ -743,16 +746,16 @@ function setupProductEvents() {
 }
 
 function initProducts() {
-    renderProducts('peruvian-breakfast');
-    // Marcar el filtro inicial como activo
+    renderProducts('all'); 
     const filterButtons = document.querySelectorAll('.filter-btn');
     filterButtons.forEach(btn => {
-        if (btn.dataset.category === 'peruvian-breakfast') {
+        if (btn.dataset.category === 'all') {
             btn.classList.add('active');
         } else {
             btn.classList.remove('active');
         }
     });
+    
     setupFilters();
     setupProductEvents();
 }
