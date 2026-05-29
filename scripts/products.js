@@ -708,6 +708,15 @@ function setupProductEvents() {
 
 function initProducts() {
     renderProducts('peruvian-breakfast');
+    // Marcar el filtro inicial como activo
+    const filterButtons = document.querySelectorAll('.filter-btn');
+    filterButtons.forEach(btn => {
+        if (btn.dataset.category === 'peruvian-breakfast') {
+            btn.classList.add('active');
+        } else {
+            btn.classList.remove('active');
+        }
+    });
     setupFilters();
     setupProductEvents();
 }
