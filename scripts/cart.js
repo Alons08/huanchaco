@@ -423,7 +423,7 @@ function submitOrder() {
     message += `📞 *Phone:* ${customerPhone}\n`;
     message += `💳 *Payment Method:* ${paymentMethod}\n\n`;
 
-    message += `*DELIVERY DETAILS*\n`;
+    message += `*ORDER DETAILS*\n`;
     message += deliveryInfo + '\n';
 
     message += `🍽️ *ORDER*\n`;
