@@ -194,7 +194,7 @@ function updateCart() {
     
     if (cart.length === 0) {
         cartElements.items.innerHTML = '<p class="empty-cart">Tu carrito está vacío</p>';
-        if (cartElements.total) cartElements.total.textContent = 'S/0.00';
+        if (cartElements.total) cartElements.total.textContent = '$0.00';
         updateCartCount();
         saveCartWithTimestamp(); // Guardar estado vacío
         return;
@@ -213,7 +213,7 @@ function updateCart() {
         cartItem.innerHTML = `
             <div class="cart-item-info">
                 <h4>${item.product.name}</h4>
-                <p>S/${item.product.price.toFixed(2)} c/u</p>
+                <p>$${item.product.price.toFixed(2)} c/u</p>
             </div>
             <div class="cart-item-actions">
                 <div class="quantity-control">
@@ -229,7 +229,7 @@ function updateCart() {
         cartElements.items.appendChild(cartItem);
     });
     
-    if (cartElements.total) cartElements.total.textContent = `S/${total.toFixed(2)}`;
+    if (cartElements.total) cartElements.total.textContent = `$${total.toFixed(2)}`;
     updateCartCount();
     saveCartWithTimestamp();
     setupCartItemEvents();
@@ -428,7 +428,7 @@ function submitOrder() {
 
     message += `🍽️ *ORDER*\n`;
     cart.forEach(item => {
-        message += `- ${item.product.name} (x${item.quantity}): $${(item.product.price * item.quantity).toFixed(2)}\n`;
+        message += `- ${item.product.name} (x${item.quantity}): $ ${(item.product.price * item.quantity).toFixed(2)}\n`;
     });
 
     message += `\n💰 *Total: $${cart.reduce((sum, item) => sum + (item.product.price * item.quantity), 0).toFixed(2)}*\n`;
