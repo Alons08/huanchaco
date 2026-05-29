@@ -147,6 +147,15 @@ const products = [
         image: "./images/menu/platanos-fritos.jpg",
         available: true
     },
+    {
+        id: 2,
+        name: "Peruvian Anticuchos",
+        category: "appetizers",
+        price: 12.50,
+        description: "Authentic Peruvian-style grilled beef heart skewers, marinated in our signature spices and flame-grilled to perfection. Served with potatoes and Peruvian corn. A true taste of Peru.",
+        image: "./images/menu/anticuchos.jpg",
+        available: true
+    },
 
     // --- SEAFOOD ---
     {
@@ -219,6 +228,15 @@ const products = [
         price: 30.00,
         description: "Peruvian causa topped with fresh ceviche.",
         image: "./images/menu/causa-acevichada.jpg",
+        available: true
+    },
+    {
+        id: 1,
+        name: "Arroz con Mariscos",
+        category: "seafood",
+        price: 31.25,
+        description: "Peruvian seafood paella.",
+        image: "./images/menu/arroz-con-mariscos.jpg",
         available: true
     },
 
@@ -329,6 +347,15 @@ const products = [
         price: 25.00,
         description: "Creamy huancaína pasta served with lomo steak.",
         image: "./images/menu/tallarin-a-la-huancaina-con-lomo.jpg",
+        available: true
+    },
+    {
+        id: 3,
+        name: "Arroz Chaufa",
+        category: "peruvian-classics",
+        price: 26.04,
+        description: "Peruvian fried rice.",
+        image: "./images/menu/chaufa-pollo.jpg",
         available: true
     },
 
@@ -629,7 +656,7 @@ function renderProducts(category = 'peruvian-breakfast') {
             <div class="item-info">
                 <h3>${product.name}</h3>
                 <p class="description">${product.description}</p>
-                <span class="price">S/ ${product.price.toFixed(2)}</span>
+                <span class="price">$ ${product.price.toFixed(2)}</span>
                 ${product.available ? `
                 <div class="item-actions">
                     <div class="quantity-control">
