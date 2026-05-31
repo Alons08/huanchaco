@@ -322,16 +322,7 @@ function validateForm() {
     }
 
     // Validar método de pago
-    const paymentSelected = form.querySelector('input[name="delivery-payment"]:checked');
-    if (!paymentSelected) {
-        const paymentGroup = document.querySelector('.form-group:nth-child(3)');
-        paymentGroup.classList.add('invalid');
-        const errorMsg = document.createElement('div');
-        errorMsg.className = 'error-message';
-        errorMsg.textContent = 'Por favor selecciona el método de pago';
-        paymentGroup.appendChild(errorMsg);
-        isValid = false;
-    }
+    // No se requiere validación de método de pago, solo se paga en el restaurante
 
     // Validar campos específicos según el tipo de entrega
     if (deliveryType === 'delivery') {
@@ -394,7 +385,7 @@ function submitOrder() {
     // Obtener datos del formulario
     const customerName = form['customer-name'].value.trim();
     const customerPhone = form['customer-phone'].value.trim();
-    const paymentMethod = form.querySelector('input[name="delivery-payment"]:checked').value; // Asignación común
+    const paymentMethod = 'Pay at restaurant';
 
     let deliveryInfo = ''; //ESTO SE AGREGO AL FINALLLLL
     

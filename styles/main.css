@@ -1,3 +1,27 @@
+/* Estilo sutil para el mensaje de pago en el restaurante */
+.pay-at-restaurant-info {
+    background: #f8fafc;
+    border: 1px solid #e0e4ea;
+    border-radius: 8px;
+    padding: 10px 16px;
+    margin: 6px 0 0 0;
+    color: #444;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 1rem;
+}
+/* Puedes agregar un ícono si lo deseas, por ejemplo usando FontAwesome: */
+.pay-at-restaurant-info::before {
+    content: "\f4b8";
+    font-family: "Font Awesome 6 Free";
+    font-weight: 900;
+    color: var(--primary-color);
+    margin-right: 8px;
+    font-size: 1.1em;
+    display: inline-block;
+}
 .social-icons a.tiktok-icon,
 .tiktok-icon .fa-tiktok {
   color: #fff !important;
@@ -867,36 +891,6 @@ body {
     animation: fadeIn 0.3s ease;
 }
 
-.radio-group {
-    display: flex; /* Coloca los radios en una sola línea */
-    gap: 15px; /* Espaciado horizontal entre los radios */
-}
-
-.radio-group label {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    font-size: 1rem;
-    cursor: pointer;
-    padding: 0;
-    border: none;
-    background: none;
-}
-
-.radio-group input[type="radio"] {
-    accent-color: var(--primary-color);
-    width: 18px;
-    height: 18px;
-}
-
-.radio-group label:hover {
-    border-color: var(--primary-color);
-}
-
-.radio-group input[type="radio"]:checked + label {
-    border-color: var(--primary-color);
-    background-color: rgba(243, 156, 18, 0.1);
-}
 
 /* Customer Info Form */
 .customer-info {
