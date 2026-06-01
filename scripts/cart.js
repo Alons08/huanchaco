@@ -230,7 +230,7 @@ function updateCart() {
     cartElements.items.innerHTML = '';
     
     if (cart.length === 0) {
-        cartElements.items.innerHTML = '<p class="empty-cart">Tu carrito está vacío</p>';
+        cartElements.items.innerHTML = '<p class="empty-cart">Your cart is empty</p>';
         if (cartElements.total) cartElements.total.textContent = '$0.00';
         updateCartCount();
         saveCartWithTimestamp(); // Guardar estado vacío
@@ -350,32 +350,32 @@ function validateForm() {
 
     // Validar campos obligatorios comunes
     if (!form['customer-name'].value.trim()) {
-        markFieldInvalid(form['customer-name'], 'Por favor ingresa tu nombre');
+        markFieldInvalid(form['customer-name'], 'Please enter your name');
         isValid = false;
     }
 
     if (!form['customer-phone'].value.trim()) {
-        markFieldInvalid(form['customer-phone'], 'Por favor ingresa tu teléfono');
+        markFieldInvalid(form['customer-phone'], 'Please enter your phone number');
         isValid = false;
     }
 
     if (!orderType) {
-        markFieldInvalid(form['order-type'], 'Por favor selecciona el tipo de pedido');
+        markFieldInvalid(form['order-type'], 'Please select order type');
         isValid = false;
     }
 
     if (orderType === 'takeaway') {
         if (!form['pickup-time'].value) {
-            markFieldInvalid(form['pickup-time'], 'Por favor selecciona el tiempo estimado para recoger');
+            markFieldInvalid(form['pickup-time'], 'Please select estimated pickup time');
             isValid = false;
         }
     } else if (orderType === 'dinein') {
         if (!dineInArea) {
-            markFieldInvalid(form['dinein-area'], 'Por favor selecciona el área para comer');
+            markFieldInvalid(form['dinein-area'], 'Please select dining area');
             isValid = false;
         }
         if (!form['location-selection'].value) {
-            markFieldInvalid(form['location-selection'], 'Por favor selecciona la mesa / barra / área externa');
+            markFieldInvalid(form['location-selection'], 'Please select table / bar / outside area');
             isValid = false;
         }
     }
@@ -464,7 +464,7 @@ function submitOrder() {
     window.open(whatsappUrl, '_blank');
     
     hideCart(); //ocultar el carrito
-    showNotification('Enviando pedido correctamente por WhatsApp', 'success'); // Notificación en pantalla de éxito
+    showNotification('Order successfully sent via WhatsApp', 'success'); // Notificación en pantalla de éxito
     clearCart(); // Limpiar carrito
     resetForm(); // Resetear formulario
  
