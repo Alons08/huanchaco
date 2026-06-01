@@ -72,9 +72,13 @@ const cartElements = {
     cancelOrder: document.getElementById('cancel-order'),
     submitOrder: document.getElementById('submit-order'),
     form: document.getElementById('order-form'),
-    deliveryType: document.getElementById('delivery-type'),
+    orderType: document.getElementById('order-type'),
     pickupFields: document.getElementById('pickup-fields'),
-    deliveryFields: document.getElementById('delivery-fields'),
+    dineInFields: document.getElementById('dinein-fields'),
+    dineInArea: document.getElementById('dinein-area'),
+    locationGroup: document.getElementById('location-group'),
+    locationSelect: document.getElementById('location-selection'),
+    orderNotes: document.getElementById('order-notes'),
     step1: document.getElementById('cart-step-1'),
     step2: document.getElementById('cart-step-2')
 };
@@ -83,33 +87,66 @@ const cartElements = {
 function initCart() {
     loadCartWithExpiration();
     setupCartEvents();
-    setupDeliveryToggle();
+    setupOrderTypeToggle();
+    setupDineInAreaToggle();
     updateCartCount();
 
-    // Ocultar campos de entrega al cargar
-    cartElements.pickupFields.classList.remove('active');
-    cartElements.deliveryFields.classList.remove('active');
+    // Ocultar campos de ubicación y secciones al cargar
+    if (cartElements.pickupFields) cartElements.pickupFields.style.display = 'none';
+    if (cartElements.dineInFields) cartElements.dineInFields.style.display = 'none';
+    if (cartElements.locationGroup) cartElements.locationGroup.style.display = 'none';
 
     // Mostrar siempre el paso 1 al abrir el carrito
     cartElements.step1.classList.add('active');
     cartElements.step2.classList.remove('active');
 }
 
-// Configurar eventos de tipo de entrega
-function setupDeliveryToggle() {
-    if (cartElements.deliveryType) {
-        cartElements.deliveryType.addEventListener('change', function() {
-            const deliveryType = this.value;
+// Configurar eventos de tipo de pedido
+function setupOrderTypeToggle() {
+    if (cartElements.orderType) {
+        cartElements.orderType.addEventListener('change', function() {
+            const orderType = this.value;
 
-            // Ocultar todos los campos primero
-            cartElements.pickupFields.classList.remove('active');
-            cartElements.deliveryFields.classList.remove('active');
+            if (cartElements.pickupFields) cartElements.pickupFields.style.display = 'none';
+            if (cartElements.dineInFields) cartElements.dineInFields.style.display = 'none';
+            if (cartElements.locationGroup) cartElements.locationGroup.style.display = 'none';
+            if (cartElements.locationSelect) cartElements.locationSelect.innerHTML = '<option value="">Select</option>';
 
-            // Mostrar los campos correspondientes
-            if (deliveryType === 'pickup') {
-                cartElements.pickupFields.classList.add('active');
-            } else if (deliveryType === 'delivery') {
-                cartElements.deliveryFields.classList.add('active');
+            if (orderType === 'takeaway') {
+                cartElements.pickupFields.style.display = 'block';
+            } else if (orderType === 'dinein') {
+                cartElements.dineInFields.style.display = 'block';
+            }
+        });
+    }
+}
+
+// Configurar selección de área para comer en el local
+function setupDineInAreaToggle() {
+    if (cartElements.dineInArea) {
+        cartElements.dineInArea.addEventListener('change', function() {
+            const area = this.value;
+
+            if (!cartElements.locationGroup || !cartElements.locationSelect) return;
+
+            cartElements.locationSelect.innerHTML = '<option value="">Select</option>';
+
+            let count = 0;
+            if (area === 'table') count = 12;
+            else if (area === 'bar') count = 5;
+            else if (area === 'outside') count = 3;
+
+            if (count > 0) {
+                for (let i = 1; i <= count; i++) {
+                    const label = `${area.charAt(0).toUpperCase() + area.slice(1)} ${i}`;
+                    const option = document.createElement('option');
+                    option.value = label;
+                    option.textContent = label;
+                    cartElements.locationSelect.appendChild(option);
+                }
+                cartElements.locationGroup.style.display = 'block';
+            } else {
+                cartElements.locationGroup.style.display = 'none';
             }
         });
     }
@@ -300,7 +337,8 @@ function removeFromCart(id) {
 // Validar formulario
 function validateForm() {
     const form = cartElements.form;
-    const deliveryType = cartElements.deliveryType.value;
+    const orderType = cartElements.orderType.value;
+    const dineInArea = cartElements.dineInArea ? cartElements.dineInArea.value : '';
     let isValid = true;
 
     // Limpiar estados previos de validación
@@ -321,33 +359,28 @@ function validateForm() {
         isValid = false;
     }
 
-    // Validar método de pago
-    // No se requiere validación de método de pago, solo se paga en el restaurante
+    if (!orderType) {
+        markFieldInvalid(form['order-type'], 'Por favor selecciona el tipo de pedido');
+        isValid = false;
+    }
 
-    // Validar campos específicos según el tipo de entrega
-    if (deliveryType === 'delivery') {
-        if (!form['delivery-address'].value.trim()) {
-            markFieldInvalid(form['delivery-address'], 'Por favor ingresa la dirección de entrega');
-            isValid = false;
-        }
-    } else if (deliveryType === 'pickup') {
+    if (orderType === 'takeaway') {
         if (!form['pickup-time'].value) {
             markFieldInvalid(form['pickup-time'], 'Por favor selecciona el tiempo estimado para recoger');
             isValid = false;
         }
-    } else {
-        // Si no ha seleccionado tipo de entrega
-        const deliveryGroup = document.querySelector('.form-group:nth-child(4)');
-        deliveryGroup.classList.add('invalid');
-        const errorMsg = document.createElement('div');
-        errorMsg.className = 'error-message';
-        errorMsg.textContent = 'Por favor selecciona el tipo de entrega';
-        deliveryGroup.appendChild(errorMsg);
-        isValid = false;
+    } else if (orderType === 'dinein') {
+        if (!dineInArea) {
+            markFieldInvalid(form['dinein-area'], 'Por favor selecciona el área para comer');
+            isValid = false;
+        }
+        if (!form['location-selection'].value) {
+            markFieldInvalid(form['location-selection'], 'Por favor selecciona la mesa / barra / área externa');
+            isValid = false;
+        }
     }
 
     if (!isValid) {
-        // Hacer scroll al primer error
         const firstError = document.querySelector('.invalid');
         if (firstError) {
             firstError.scrollIntoView({ behavior: 'smooth', block: 'center' });
@@ -380,31 +413,28 @@ function submitOrder() {
     }
     
     const form = cartElements.form;
-    const deliveryType = cartElements.deliveryType.value;
+    const orderType = cartElements.orderType.value;
     
     // Obtener datos del formulario
     const customerName = form['customer-name'].value.trim();
     const customerPhone = form['customer-phone'].value.trim();
     const paymentMethod = 'Pay at restaurant';
 
-    let deliveryInfo = ''; //ESTO SE AGREGO AL FINALLLLL
-    
-    if (deliveryType === 'pickup') {
-        const pickupTime = form['pickup-time'].value;
-        const notes = form['pickup-notes'].value.trim();
+    let deliveryInfo = '';
+    const notes = form['order-notes'].value.trim();
 
-        // Build message for pickup
-        deliveryInfo = `🏠 *Pick Up at Restaurant*\n` +
-                       `⏳ *Estimated Time:* ${pickupTime} minutes\n` +
-                      (notes ? `📝 *Notes:* ${notes}\n` : '');
-    } else if (deliveryType === 'delivery') {
-        const address = form['delivery-address'].value.trim();
-        const notes = form['delivery-notes'].value.trim();
-
-        // Build message for delivery
-        deliveryInfo = `🚚 *Delivery*\n` +
-                    `🗺️ *Address:* ${address}\n` +
-                    (notes ? `📝 *Notes:* ${notes}\n` : '');
+    if (orderType === 'takeaway') {
+        const pickupTimeSelect = form['pickup-time'];
+        const pickupTime = pickupTimeSelect.options[pickupTimeSelect.selectedIndex].text;
+        deliveryInfo = `🛍️ *Takeaway / Pick Up*\n` +
+                       `⏳ *Estimated Pick Up Time:* ${pickupTime}\n`;
+    } else if (orderType === 'dinein') {
+        const dineInArea = form['dinein-area'].value;
+        const location = form['location-selection'].value;
+        const areaLabel = dineInArea.charAt(0).toUpperCase() + dineInArea.slice(1);
+        deliveryInfo = `🍽️ *Dine In*\n` +
+                       `🏷️ *Area:* ${areaLabel}\n` +
+                       `📍 *Location:* ${location}\n`;
     }
 
     // Build WhatsApp message
@@ -421,6 +451,10 @@ function submitOrder() {
     cart.forEach(item => {
         message += `- ${item.product.name} (x${item.quantity}): $ ${(item.product.price * item.quantity).toFixed(2)}\n`;
     });
+
+    if (notes) {
+        message += `\n📝 *Notes:* ${notes}\n`;
+    }
 
     message += `\n💰 *Total: $${cart.reduce((sum, item) => sum + (item.product.price * item.quantity), 0).toFixed(2)}*\n`;
     message += `\nPlease confirm my order. Thank you!`;
@@ -442,15 +476,16 @@ function resetForm() {
         cartElements.form.reset(); // Limpia los valores del formulario estándar
 
         // Limpia los campos dinámicos manualmente
-        document.getElementById('pickup-notes').value = ''; // Observaciones para recoger en el local
-        document.getElementById('pickup-time').value = ''; // Tiempo estimado para recoger
-        document.getElementById('delivery-address').value = ''; // Dirección de entrega
-        document.getElementById('delivery-reference').value = ''; // Referencia de entrega
-        document.getElementById('delivery-notes').value = ''; // Observaciones para delivery
+        if (cartElements.locationSelect) {
+            cartElements.locationSelect.innerHTML = '<option value="">Select</option>';
+        }
+        if (cartElements.orderNotes) {
+            cartElements.orderNotes.value = '';
+        }
 
-        // Oculta los campos específicos
-        cartElements.pickupFields.classList.remove('active');
-        cartElements.deliveryFields.classList.remove('active');
+        if (cartElements.locationGroup) {
+            cartElements.locationGroup.style.display = 'none';
+        }
     }
 }
 
