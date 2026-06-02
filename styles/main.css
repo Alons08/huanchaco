@@ -145,6 +145,11 @@ body {
     background-color: #c0392b;
 }
 
+#checkout {
+    display: block;
+    margin: 0 auto;
+}
+
 /* Section Styles */
 .section-title {
     font-family: 'Montserrat', sans-serif;
