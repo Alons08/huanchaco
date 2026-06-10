@@ -574,7 +574,7 @@ const products = [
         description: "Large bottle of popular Peruvian golden soda.",
         image: "./images/menu/gaseosa-inka-1l.jpg",
         available: true
-    },
+    }, 
     {
         id: 108,
         name: "Jarritos",
