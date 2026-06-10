@@ -680,7 +680,7 @@ const products = [
         category: "vegan-options",
         price: 15.00,
         description: "Traditional Peruvian yellow potato layered with avocado, tomatoes, and fresh vegetables.",
-        image: "./images/menu/vegan-causa.jpg",
+        image: "./images/menu/causa-limena.jpg",
         available: true
     },
     {
@@ -689,7 +689,7 @@ const products = [
         category: "vegan-options",
         price: 18.00,
         description: "Peruvian basil and spinach pasta made without dairy.",
-        image: "./images/menu/vegan-tallarines-verdes.jpg",
+        image: "./images/menu/tallarin-verde-bistec.jpg",
         available: true
     },
     {
@@ -707,7 +707,7 @@ const products = [
         category: "vegan-options",
         price: 10.00,
         description: "Golden crispy cassava served with salsa criolla.",
-        image: "./images/menu/yuca-fries.jpg",
+        image: "./images/menu/yuca-frita.jpg",
         available: true
     },
     {
