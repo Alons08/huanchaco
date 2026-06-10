@@ -75,7 +75,6 @@ const cartElements = {
     orderType: document.getElementById('order-type'),
     pickupFields: document.getElementById('pickup-fields'),
     dineInFields: document.getElementById('dinein-fields'),
-    reservationFields: document.getElementById('reservation-fields'),
     dineInArea: document.getElementById('dinein-area'),
     locationGroup: document.getElementById('location-group'),
     locationSelect: document.getElementById('location-selection'),
@@ -85,15 +84,24 @@ const cartElements = {
     reservationDate: document.getElementById('reservation-date'),
     reservationTime: document.getElementById('reservation-time'),
     reservationPeople: document.getElementById('reservation-people'),
+    reservationOverlay: document.getElementById('reservation-overlay'),
+    reservationModal: document.getElementById('reservation-modal'),
+    reservationForm: document.getElementById('reservation-form'),
+    makeReservationBtn: document.getElementById('make-reservation-btn'),
+    closeReservation: document.getElementById('close-reservation'),
+    cancelReservation: document.getElementById('cancel-reservation'),
+    submitReservation: document.getElementById('submit-reservation'),
     orderNotes: document.getElementById('order-notes'),
     step1: document.getElementById('cart-step-1'),
-    step2: document.getElementById('cart-step-2')
+    step2: document.getElementById('cart-step-2'),
+    reservationStep: document.getElementById('reservation-step')
 };
 
 // Inicializar carrito
 function initCart() {
     loadCartWithExpiration();
     setupCartEvents();
+    setupReservationModal();
     setupOrderTypeToggle();
     setupDineInAreaToggle();
     setupReservationDateListeners();
@@ -120,10 +128,6 @@ function hideAllDynamicFields() {
     if (cartElements.dineInFields) {
         cartElements.dineInFields.classList.remove('active');
         cartElements.dineInFields.style.display = 'none';
-    }
-    if (cartElements.reservationFields) {
-        cartElements.reservationFields.classList.remove('active');
-        cartElements.reservationFields.style.display = 'none';
     }
     if (cartElements.locationGroup) {
         cartElements.locationGroup.style.display = 'none';
@@ -152,11 +156,6 @@ function setupOrderTypeToggle() {
             } else if (orderType === 'dinein') {
                 cartElements.dineInFields.classList.add('active');
                 cartElements.dineInFields.style.display = 'block';
-            } else if (orderType === 'reservation') {
-                cartElements.reservationFields.classList.add('active');
-                cartElements.reservationFields.style.display = 'block';
-                setReservationDateMin();
-                populateReservationTimes();
             }
         });
     }
@@ -352,6 +351,134 @@ function isSameDate(a, b) {
         });
     }
 
+function setupReservationModal() {
+    if (cartElements.makeReservationBtn) {
+        cartElements.makeReservationBtn.addEventListener('click', function(e) {
+            e.preventDefault();
+            showReservationModal();
+        });
+    }
+    if (cartElements.closeReservation) cartElements.closeReservation.addEventListener('click', hideReservationModal);
+    if (cartElements.reservationOverlay) cartElements.reservationOverlay.addEventListener('click', hideReservationModal);
+    if (cartElements.cancelReservation) cartElements.cancelReservation.addEventListener('click', hideReservationModal);
+    if (cartElements.submitReservation) cartElements.submitReservation.addEventListener('click', submitReservation);
+}
+
+function showReservationModal() {
+    if (!cartElements.reservationModal || !cartElements.reservationOverlay) return;
+
+    if (cartElements.reservationForm) {
+        cartElements.reservationForm.reset();
+    }
+    if (cartElements.reservationLocationGroup) {
+        cartElements.reservationLocationGroup.style.display = 'none';
+    }
+    setReservationDateMin();
+    populateReservationTimes();
+
+    if (cartElements.reservationStep) {
+        cartElements.reservationStep.classList.add('active');
+    }
+
+    cartElements.reservationModal.classList.add('active');
+    cartElements.reservationOverlay.classList.add('active');
+    document.body.style.overflow = 'hidden';
+}
+
+function hideReservationModal() {
+    if (!cartElements.reservationModal || !cartElements.reservationOverlay) return;
+
+    if (cartElements.reservationStep) {
+        cartElements.reservationStep.classList.remove('active');
+    }
+    cartElements.reservationModal.classList.remove('active');
+    cartElements.reservationOverlay.classList.remove('active');
+    document.body.style.overflow = '';
+}
+
+function validateReservationForm() {
+    const form = cartElements.reservationForm;
+    if (!form) return false;
+
+    let isValid = true;
+    document.querySelectorAll('.form-group').forEach(group => {
+        group.classList.remove('invalid');
+        const errorMsg = group.querySelector('.error-message');
+        if (errorMsg) errorMsg.remove();
+    });
+
+    if (!form['reservation-date'].value) {
+        markFieldInvalid(form['reservation-date'], 'Please select reservation date');
+        isValid = false;
+    } else {
+        const selectedDate = new Date(form['reservation-date'].value + 'T00:00:00');
+        if (!getRestaurantSchedule(selectedDate)) {
+            markFieldInvalid(form['reservation-date'], 'The restaurant is closed on this day');
+            isValid = false;
+        }
+    }
+
+    if (!form['reservation-time'].value) {
+        markFieldInvalid(form['reservation-time'], 'Please select reservation time');
+        isValid = false;
+    }
+
+    if (!form['reservation-area'].value) {
+        markFieldInvalid(form['reservation-area'], 'Please select reservation area');
+        isValid = false;
+    }
+
+    if (!form['reservation-location-selection'].value) {
+        markFieldInvalid(form['reservation-location-selection'], 'Please select reservation location');
+        isValid = false;
+    }
+
+    if (!form['reservation-people'].value) {
+        markFieldInvalid(form['reservation-people'], 'Please select number of people');
+        isValid = false;
+    }
+
+    if (!isValid) {
+        const firstError = document.querySelector('.invalid');
+        if (firstError) {
+            firstError.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }
+    }
+
+    return isValid;
+}
+
+function submitReservation() {
+    const form = cartElements.reservationForm;
+    if (!form) return;
+
+    if (!validateReservationForm()) {
+        return;
+    }
+
+    const reservationDate = form['reservation-date'].value;
+    const reservationTime = form['reservation-time'].value;
+    const reservationArea = form['reservation-area'].value;
+    const reservationLocation = form['reservation-location-selection'].value;
+    const reservationPeople = form['reservation-people'].value;
+    const areaLabel = reservationArea.charAt(0).toUpperCase() + reservationArea.slice(1);
+
+    let message = `Hello Huanchaco! I would like to make a reservation:\n\n`;
+    message += `📅 *Date:* ${reservationDate}\n`;
+    message += `⏰ *Time:* ${reservationTime}\n`;
+    message += `👥 *People:* ${reservationPeople}\n`;
+    message += `🏷️ *Area:* ${areaLabel}\n`;
+    message += `📍 *Location:* ${reservationLocation}\n`;
+    message += `\nPlease confirm this reservation. Thank you!`;
+
+    const whatsappUrl = `https://wa.me/19255051486?text=${encodeURIComponent(message)}`;
+    window.open(whatsappUrl, '_blank');
+
+    hideReservationModal();
+    showNotification('Reservation request sent via WhatsApp', 'success');
+    if (cartElements.reservationForm) cartElements.reservationForm.reset();
+}
+
 // Mostrar notificación
 function showNotification(message, type = 'success') {
     const notification = document.createElement('div');
@@ -389,7 +516,8 @@ function hideCart() {
 // Ir al formulario de checkout
 function goToCheckout() {
     if (cart.length === 0) {
-        showNotification('The cart is empty. Select Reservation to book a table without items.', 'info');
+        showNotification('The cart is empty. Add items to your cart before checkout.', 'info');
+        return;
     }
     
     cartElements.step1.classList.remove('active');
@@ -557,37 +685,6 @@ function validateForm() {
             markFieldInvalid(form['location-selection'], 'Please select table / bar / outside area');
             isValid = false;
         }
-    } else if (orderType === 'reservation') {
-        if (!form['reservation-date'].value) {
-            markFieldInvalid(form['reservation-date'], 'Please select reservation date');
-            isValid = false;
-        } else {
-            const selectedDate = new Date(form['reservation-date'].value + 'T00:00:00');
-            if (!getRestaurantSchedule(selectedDate)) {
-                markFieldInvalid(form['reservation-date'], 'The restaurant is closed on this day');
-                isValid = false;
-            }
-        }
-
-        if (!form['reservation-time'].value) {
-            markFieldInvalid(form['reservation-time'], 'Please select reservation time');
-            isValid = false;
-        }
-
-        if (!form['reservation-area'].value) {
-            markFieldInvalid(form['reservation-area'], 'Please select reservation area');
-            isValid = false;
-        }
-
-        if (!form['reservation-location-selection'].value) {
-            markFieldInvalid(form['reservation-location-selection'], 'Please select reservation location');
-            isValid = false;
-        }
-
-        if (!form['reservation-people'].value) {
-            markFieldInvalid(form['reservation-people'], 'Please select number of people');
-            isValid = false;
-        }
     }
 
     if (!isValid) {
@@ -621,8 +718,8 @@ function submitOrder() {
         return;
     }
 
-    if (cart.length === 0 && orderType !== 'reservation') {
-        showNotification('The cart is empty. Add items or choose reservation only.', 'error');
+    if (cart.length === 0) {
+        showNotification('The cart is empty. Add items before checkout.', 'error');
         return;
     }
 
@@ -650,20 +747,6 @@ function submitOrder() {
         deliveryInfo = `🍽️ *Dine In*\n` +
                        `🏷️ *Area:* ${areaLabel}\n` +
                        `📍 *Location:* ${location}\n`;
-    } else if (orderType === 'reservation') {
-        const reservationDate = form['reservation-date'].value;
-        const reservationTime = form['reservation-time'].value;
-        const reservationArea = form['reservation-area'].value;
-        const reservationLocation = form['reservation-location-selection'].value;
-        const reservationPeople = form['reservation-people'].value;
-        const areaLabel = reservationArea ? reservationArea.charAt(0).toUpperCase() + reservationArea.slice(1) : 'No preference';
-
-        deliveryInfo = `🪑 *Reservation*\n` +
-                       `📅 *Date:* ${reservationDate}\n` +
-                       `⏰ *Time:* ${reservationTime}\n` +
-                       `👥 *People:* ${reservationPeople}\n` +
-                       `🏷️ *Area:* ${areaLabel}\n` +
-                       `📍 *Location:* ${reservationLocation}\n`;
     }
 
     // Build WhatsApp message
@@ -682,8 +765,6 @@ function submitOrder() {
             message += `- ${item.product.name} (x${item.quantity}): $ ${(item.product.price * item.quantity).toFixed(2)}\n`;
         });
         message += `\n💰 *Total: $${cart.reduce((sum, item) => sum + (item.product.price * item.quantity), 0).toFixed(2)}*\n`;
-    } else {
-        message += `📝 *Reservation only, no items selected.*\n`;
     }
 
     if (notes) {
@@ -714,21 +795,6 @@ function resetForm() {
         }
         if (cartElements.orderNotes) {
             cartElements.orderNotes.value = '';
-        }
-        if (cartElements.reservationTime) {
-            cartElements.reservationTime.innerHTML = '<option value="">Select</option>';
-        }
-        if (cartElements.reservationDate) {
-            cartElements.reservationDate.value = '';
-        }
-        if (cartElements.reservationArea) {
-            cartElements.reservationArea.value = '';
-        }
-        if (cartElements.reservationLocationSelect) {
-            cartElements.reservationLocationSelect.innerHTML = '<option value="">Select</option>';
-        }
-        if (cartElements.reservationPeople) {
-            cartElements.reservationPeople.value = '';
         }
 
         if (cartElements.locationGroup) {

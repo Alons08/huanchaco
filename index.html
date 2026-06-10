@@ -30,6 +30,7 @@
             <p class="hero-subtitle">Discover the true taste of Peru in every bite</p>
             <div class="hero-buttons">
                 <a href="#menu" class="btn btn-primary">See Our Menu</a>
+                <a href="#" class="btn btn-primary" id="make-reservation-btn">Make a Reservation</a>
                 <a href="#contact" class="btn btn-outline">Contact Us</a>
             </div>
         </div>
@@ -67,6 +68,7 @@
                 <button class="filter-btn" data-category="kids-menu">Kids Menu</button>
                 <button class="filter-btn" data-category="drinks">Drinks</button>
                 <button class="filter-btn" data-category="gluten-free-options">Gluten-Free Options</button>
+                <button class="filter-btn" data-category="vegan-options">Vegan Options</button>
                 <button class="filter-btn" data-category="extras-sides">Extras & Sides</button>
             </div>
             
@@ -177,7 +179,6 @@
                             <option value="">Select</option>
                             <option value="takeaway">Takeaway / Pick Up</option>
                             <option value="dinein">Dine In</option>
-                            <option value="reservation">Reservation</option>
                         </select>
                     </div>
                     <div class="delivery-fields" id="pickup-fields">
@@ -208,47 +209,6 @@
                             </select>
                         </div>
                     </div>
-                    <div class="delivery-fields" id="reservation-fields">
-                        <div class="form-group">
-                            <label for="reservation-date">Reservation Date *</label>
-                            <input type="date" id="reservation-date" name="reservation-date">
-                        </div>
-                        <div class="form-group">
-                            <label for="reservation-time">Reservation Time *</label>
-                            <select id="reservation-time" name="reservation-time">
-                                <option value="">Select</option>
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <label for="reservation-area">Reservation Area *</label>
-                            <select id="reservation-area" name="reservation-area">
-                                <option value="">Select</option>
-                                <option value="table">Table</option>
-                                <option value="bar">Bar</option>
-                                <option value="outside">Outside</option>
-                            </select>
-                        </div>
-                        <div class="form-group" id="reservation-location-group" style="display: none;">
-                            <label for="reservation-location-selection">Location *</label>
-                            <select id="reservation-location-selection" name="reservation-location-selection">
-                                <option value="">Select</option>
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <label for="reservation-people">Number of People *</label>
-                            <select id="reservation-people" name="reservation-people">
-                                <option value="">Select</option>
-                                <option value="1">1 person</option>
-                                <option value="2">2 people</option>
-                                <option value="3">3 people</option>
-                                <option value="4">4 people</option>
-                                <option value="5">5 people</option>
-                                <option value="6">6 people</option>
-                                <option value="7">7 people</option>
-                                <option value="8">8 people</option>
-                            </select>
-                        </div>
-                    </div>
                     <div class="form-group">
                         <label for="order-notes">Notes</label>
                         <textarea id="order-notes" name="order-notes" rows="2"></textarea>
@@ -258,6 +218,63 @@
             <div class="form-actions">
                 <button class="btn btn-outline" id="cancel-order">Cancel</button>
                 <button class="btn btn-primary" id="submit-order">Submit Order <i class="fab fa-whatsapp" style="margin-left:8px;"></i></button>
+            </div>
+        </div>
+    </div>
+
+    <div class="cart-overlay reservation-overlay" id="reservation-overlay"></div>
+    <div class="cart-container reservation-container" id="reservation-modal">
+        <div class="cart-step" id="reservation-step">
+            <div class="cart-header">
+                <h3>Make a Reservation</h3>
+                <button class="close-cart" id="close-reservation">&times;</button>
+            </div>
+            <div class="customer-info">
+                <form id="reservation-form">
+                    <div class="form-group">
+                        <label for="reservation-date">Reservation Date *</label>
+                        <input type="date" id="reservation-date" name="reservation-date" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="reservation-time">Reservation Time *</label>
+                        <select id="reservation-time" name="reservation-time" required>
+                            <option value="">Select</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="reservation-area">Reservation Area *</label>
+                        <select id="reservation-area" name="reservation-area" required>
+                            <option value="">Select</option>
+                            <option value="table">Table</option>
+                            <option value="bar">Bar</option>
+                            <option value="outside">Outside</option>
+                        </select>
+                    </div>
+                    <div class="form-group" id="reservation-location-group" style="display: none;">
+                        <label for="reservation-location-selection">Location *</label>
+                        <select id="reservation-location-selection" name="reservation-location-selection" required>
+                            <option value="">Select</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="reservation-people">Number of People *</label>
+                        <select id="reservation-people" name="reservation-people" required>
+                            <option value="">Select</option>
+                            <option value="1">1 person</option>
+                            <option value="2">2 people</option>
+                            <option value="3">3 people</option>
+                            <option value="4">4 people</option>
+                            <option value="5">5 people</option>
+                            <option value="6">6 people</option>
+                            <option value="7">7 people</option>
+                            <option value="8">8 people</option>
+                        </select>
+                    </div>
+                </form>
+            </div>
+            <div class="form-actions">
+                <button type="button" class="btn btn-outline" id="cancel-reservation">Cancel</button>
+                <button type="button" class="btn btn-primary" id="submit-reservation">Make Reservation <i class="fab fa-whatsapp" style="margin-left:8px;"></i></button>
             </div>
         </div>
     </div>

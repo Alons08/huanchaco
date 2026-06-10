@@ -674,6 +674,51 @@ const products = [
         image: "./images/menu/trio-marino-pescado.jpg",
         available: true
     },
+    {
+        id: 123,
+        name: "Vegan Causa",
+        category: "vegan-options",
+        price: 15.00,
+        description: "Traditional Peruvian yellow potato layered with avocado, tomatoes, and fresh vegetables.",
+        image: "./images/menu/vegan-causa.jpg",
+        available: true
+    },
+    {
+        id: 124,
+        name: "Vegan Tallarines Verdes",
+        category: "vegan-options",
+        price: 18.00,
+        description: "Peruvian basil and spinach pasta made without dairy.",
+        image: "./images/menu/vegan-tallarines-verdes.jpg",
+        available: true
+    },
+    {
+        id: 125,
+        name: "House Salad with Avocado",
+        category: "vegan-options",
+        price: 12.00,
+        description: "Fresh mixed greens, tomatoes, onions, cucumber, and avocado.",
+        image: "./images/menu/house-salad-avocado.jpg",
+        available: true
+    },
+    {
+        id: 126,
+        name: "Yuca Fries",
+        category: "vegan-options",
+        price: 10.00,
+        description: "Golden crispy cassava served with salsa criolla.",
+        image: "./images/menu/yuca-fries.jpg",
+        available: true
+    },
+    {
+        id: 127,
+        name: "French Fries & Salsa Criolla",
+        category: "vegan-options",
+        price: 8.00,
+        description: "French Fries & Salsa Criolla",
+        image: "./images/menu/french-fries-salsa-criolla.jpg",
+        available: true
+    },
 
     // --- EXTRAS & SIDES ---
     {
