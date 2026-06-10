@@ -66,6 +66,7 @@
                 <button class="filter-btn" data-category="desserts">Desserts</button>
                 <button class="filter-btn" data-category="kids-menu">Kids Menu</button>
                 <button class="filter-btn" data-category="drinks">Drinks</button>
+                <button class="filter-btn" data-category="gluten-free-options">Gluten-Free Options</button>
                 <button class="filter-btn" data-category="extras-sides">Extras & Sides</button>
             </div>
             
@@ -176,12 +177,13 @@
                             <option value="">Select</option>
                             <option value="takeaway">Takeaway / Pick Up</option>
                             <option value="dinein">Dine In</option>
+                            <option value="reservation">Reservation</option>
                         </select>
                     </div>
                     <div class="delivery-fields" id="pickup-fields">
                         <div class="form-group">
                             <label for="pickup-time">Estimated Pick Up Time *</label>
-                            <select id="pickup-time" name="pickup-time" required>
+                            <select id="pickup-time" name="pickup-time">
                                 <option value="">Select</option>
                                 <option value="20-25">20 - 25 minutes</option>
                                 <option value="25-30">25 - 30 minutes</option>
@@ -203,6 +205,47 @@
                             <label for="location-selection">Location *</label>
                             <select id="location-selection" name="location-selection">
                                 <option value="">Select</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="delivery-fields" id="reservation-fields">
+                        <div class="form-group">
+                            <label for="reservation-date">Reservation Date *</label>
+                            <input type="date" id="reservation-date" name="reservation-date">
+                        </div>
+                        <div class="form-group">
+                            <label for="reservation-time">Reservation Time *</label>
+                            <select id="reservation-time" name="reservation-time">
+                                <option value="">Select</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="reservation-area">Reservation Area *</label>
+                            <select id="reservation-area" name="reservation-area">
+                                <option value="">Select</option>
+                                <option value="table">Table</option>
+                                <option value="bar">Bar</option>
+                                <option value="outside">Outside</option>
+                            </select>
+                        </div>
+                        <div class="form-group" id="reservation-location-group" style="display: none;">
+                            <label for="reservation-location-selection">Location *</label>
+                            <select id="reservation-location-selection" name="reservation-location-selection">
+                                <option value="">Select</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="reservation-people">Number of People *</label>
+                            <select id="reservation-people" name="reservation-people">
+                                <option value="">Select</option>
+                                <option value="1">1 person</option>
+                                <option value="2">2 people</option>
+                                <option value="3">3 people</option>
+                                <option value="4">4 people</option>
+                                <option value="5">5 people</option>
+                                <option value="6">6 people</option>
+                                <option value="7">7 people</option>
+                                <option value="8">8 people</option>
                             </select>
                         </div>
                     </div>

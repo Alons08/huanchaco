@@ -593,6 +593,87 @@ const products = [
         image: "./images/menu/kola-inglesa.jpg",
         available: true
     },
+    {
+        id: 114,
+        name: "Fish Ceviche",
+        category: "gluten-free-options",
+        price: 22.00,
+        description: "Fish Ceviche",
+        image: "./images/menu/fish-ceviche.jpg",
+        available: true
+    },
+    {
+        id: 115,
+        name: "Mixed Seafood Ceviche",
+        category: "gluten-free-options",
+        price: 25.00,
+        description: "Mixed Seafood Ceviche",
+        image: "./images/menu/ceviche-mixto.jpg",
+        available: true
+    },
+    {
+        id: 116,
+        name: "Causa Limeña",
+        category: "gluten-free-options",
+        price: 15.00,
+        description: "Causa Limeña",
+        image: "./images/menu/causa-limena.jpg",
+        available: true
+    },
+    {
+        id: 117,
+        name: "Gluten-Free Lomo Saltado",
+        category: "gluten-free-options",
+        price: 26.00,
+        description: "Prepared without soy sauce using our gluten-free house seasoning.",
+        image: "./images/menu/lomo-saltado.jpg",
+        available: true
+    },
+    {
+        id: 118,
+        name: "Gluten-Free Chicken Saltado",
+        category: "gluten-free-options",
+        price: 25.00,
+        description: "Prepared without soy sauce using our gluten-free house seasoning.",
+        image: "./images/menu/lomo-saltado-pollo.jpg",
+        available: true
+    },
+    {
+        id: 119,
+        name: "Bistec a lo Pobre",
+        category: "gluten-free-options",
+        price: 27.00,
+        description: "Bistec a lo Pobre",
+        image: "./images/menu/bistec-pobre.jpg",
+        available: true
+    },
+    {
+        id: 120,
+        name: "Grilled Fish with Rice & Salad",
+        category: "gluten-free-options",
+        price: 25.00,
+        description: "Grilled Fish with Rice & Salad",
+        image: "./images/menu/pescado-frito.jpg",
+        available: true
+    },
+    {
+        id: 121,
+        name: "Arroz Chaufa Gluten-Free",
+        category: "gluten-free-options",
+        price: 25.00,
+        description: "Prepared without soy sauce.",
+        image: "./images/menu/chaufa-pollo.jpg",
+        available: true
+    },
+    {
+        id: 122,
+        name: "Trio Marino Gluten-Free",
+        category: "gluten-free-options",
+        price: 30.00,
+        description: "Trio Marino Gluten-Free",
+        image: "./images/menu/trio-marino-pescado.jpg",
+        available: true
+    },
 
     // --- EXTRAS & SIDES ---
     {

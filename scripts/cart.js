@@ -75,9 +75,16 @@ const cartElements = {
     orderType: document.getElementById('order-type'),
     pickupFields: document.getElementById('pickup-fields'),
     dineInFields: document.getElementById('dinein-fields'),
+    reservationFields: document.getElementById('reservation-fields'),
     dineInArea: document.getElementById('dinein-area'),
     locationGroup: document.getElementById('location-group'),
     locationSelect: document.getElementById('location-selection'),
+    reservationArea: document.getElementById('reservation-area'),
+    reservationLocationGroup: document.getElementById('reservation-location-group'),
+    reservationLocationSelect: document.getElementById('reservation-location-selection'),
+    reservationDate: document.getElementById('reservation-date'),
+    reservationTime: document.getElementById('reservation-time'),
+    reservationPeople: document.getElementById('reservation-people'),
     orderNotes: document.getElementById('order-notes'),
     step1: document.getElementById('cart-step-1'),
     step2: document.getElementById('cart-step-2')
@@ -89,16 +96,47 @@ function initCart() {
     setupCartEvents();
     setupOrderTypeToggle();
     setupDineInAreaToggle();
+    setupReservationDateListeners();
+    setupReservationAreaToggle();
     updateCartCount();
 
     // Ocultar campos de ubicación y secciones al cargar
-    if (cartElements.pickupFields) cartElements.pickupFields.style.display = 'none';
-    if (cartElements.dineInFields) cartElements.dineInFields.style.display = 'none';
-    if (cartElements.locationGroup) cartElements.locationGroup.style.display = 'none';
+    hideAllDynamicFields();
+
+    // Asignar fecha mínima para reservas
+    setReservationDateMin();
+    populateReservationTimes();
 
     // Mostrar siempre el paso 1 al abrir el carrito
     cartElements.step1.classList.add('active');
     cartElements.step2.classList.remove('active');
+}
+
+function hideAllDynamicFields() {
+    if (cartElements.pickupFields) {
+        cartElements.pickupFields.classList.remove('active');
+        cartElements.pickupFields.style.display = 'none';
+    }
+    if (cartElements.dineInFields) {
+        cartElements.dineInFields.classList.remove('active');
+        cartElements.dineInFields.style.display = 'none';
+    }
+    if (cartElements.reservationFields) {
+        cartElements.reservationFields.classList.remove('active');
+        cartElements.reservationFields.style.display = 'none';
+    }
+    if (cartElements.locationGroup) {
+        cartElements.locationGroup.style.display = 'none';
+    }
+    if (cartElements.locationSelect) {
+        cartElements.locationSelect.innerHTML = '<option value="">Select</option>';
+    }
+    if (cartElements.reservationLocationGroup) {
+        cartElements.reservationLocationGroup.style.display = 'none';
+    }
+    if (cartElements.reservationLocationSelect) {
+        cartElements.reservationLocationSelect.innerHTML = '<option value="">Select</option>';
+    }
 }
 
 // Configurar eventos de tipo de pedido
@@ -106,16 +144,19 @@ function setupOrderTypeToggle() {
     if (cartElements.orderType) {
         cartElements.orderType.addEventListener('change', function() {
             const orderType = this.value;
-
-            if (cartElements.pickupFields) cartElements.pickupFields.style.display = 'none';
-            if (cartElements.dineInFields) cartElements.dineInFields.style.display = 'none';
-            if (cartElements.locationGroup) cartElements.locationGroup.style.display = 'none';
-            if (cartElements.locationSelect) cartElements.locationSelect.innerHTML = '<option value="">Select</option>';
+            hideAllDynamicFields();
 
             if (orderType === 'takeaway') {
+                cartElements.pickupFields.classList.add('active');
                 cartElements.pickupFields.style.display = 'block';
             } else if (orderType === 'dinein') {
+                cartElements.dineInFields.classList.add('active');
                 cartElements.dineInFields.style.display = 'block';
+            } else if (orderType === 'reservation') {
+                cartElements.reservationFields.classList.add('active');
+                cartElements.reservationFields.style.display = 'block';
+                setReservationDateMin();
+                populateReservationTimes();
             }
         });
     }
@@ -150,6 +191,145 @@ function setupDineInAreaToggle() {
             }
         });
     }
+}
+
+function setupReservationAreaToggle() {
+    if (cartElements.reservationArea) {
+        cartElements.reservationArea.addEventListener('change', function() {
+            const area = this.value;
+
+            if (!cartElements.reservationLocationGroup || !cartElements.reservationLocationSelect) return;
+
+            cartElements.reservationLocationSelect.innerHTML = '<option value="">Select</option>';
+
+            let count = 0;
+            if (area === 'table') count = 12;
+            else if (area === 'bar') count = 5;
+            else if (area === 'outside') count = 3;
+
+            if (count > 0) {
+                for (let i = 1; i <= count; i++) {
+                    const label = `${area.charAt(0).toUpperCase() + area.slice(1)} ${i}`;
+                    const option = document.createElement('option');
+                    option.value = label;
+                    option.textContent = label;
+                    cartElements.reservationLocationSelect.appendChild(option);
+                }
+                cartElements.reservationLocationGroup.style.display = 'block';
+            } else {
+                cartElements.reservationLocationGroup.style.display = 'none';
+            }
+        });
+    }
+}
+
+function setupReservationDateListeners() {
+    if (cartElements.reservationDate) {
+        cartElements.reservationDate.addEventListener('change', function() {
+            populateReservationTimes();
+        });
+    }
+}
+
+function setReservationDateMin() {
+    if (!cartElements.reservationDate) return;
+    const today = new Date();
+    const dateString = today.toISOString().split('T')[0];
+    cartElements.reservationDate.min = dateString;
+}
+
+function populateReservationTimes() {
+    if (!cartElements.reservationTime || !cartElements.reservationDate) return;
+
+    const selectedDateValue = cartElements.reservationDate.value;
+    cartElements.reservationTime.innerHTML = '<option value="">Select</option>';
+
+    const selectedDate = selectedDateValue ? new Date(selectedDateValue + 'T00:00:00') : null;
+    const schedule = getRestaurantSchedule(selectedDate);
+
+    if (!schedule) {
+        if (selectedDateValue) {
+            const option = document.createElement('option');
+            option.value = '';
+            option.textContent = 'Restaurant is closed on this day';
+            cartElements.reservationTime.appendChild(option);
+        }
+        return;
+    }
+
+    const slots = getTimeSlots(schedule.open, schedule.close, selectedDate);
+    if (slots.length === 0) {
+        const option = document.createElement('option');
+        option.value = '';
+        option.textContent = 'No available times for this date';
+        cartElements.reservationTime.appendChild(option);
+        return;
+    }
+
+    slots.forEach(slot => {
+        const option = document.createElement('option');
+        option.value = slot;
+        option.textContent = slot;
+        cartElements.reservationTime.appendChild(option);
+    });
+}
+
+function getRestaurantSchedule(date) {
+    if (!date || isNaN(date.getTime())) return null;
+
+    const day = date.getDay();
+    const schedule = {
+        0: { open: 9, close: 18 }, // Sunday
+        1: null, // Monday closed
+        2: { open: 11, close: 20 }, // Tuesday
+        3: { open: 11, close: 20 }, // Wednesday
+        4: { open: 11, close: 20 }, // Thursday
+        5: { open: 11, close: 20 }, // Friday
+        6: { open: 9, close: 20 } // Saturday
+    };
+
+    return schedule[day] || null;
+}
+
+function getTimeSlots(openHour, closeHour, selectedDate) {
+    const slots = [];
+    const date = selectedDate ? new Date(selectedDate) : null;
+    const now = new Date();
+
+    let currentHour = openHour;
+    let currentMinute = 0;
+
+    while (currentHour < closeHour) {
+        const slot = formatTimeSlot(currentHour, currentMinute);
+        if (date && isSameDate(date, now)) {
+            const slotTime = new Date(date);
+            slotTime.setHours(currentHour, currentMinute, 0, 0);
+            const minAllowed = new Date(now.getTime() + 30 * 60000);
+            if (slotTime >= minAllowed) {
+                slots.push(slot);
+            }
+        } else {
+            slots.push(slot);
+        }
+
+        currentMinute += 30;
+        if (currentMinute >= 60) {
+            currentMinute = 0;
+            currentHour++;
+        }
+    }
+
+    return slots;
+}
+
+function formatTimeSlot(hour, minute) {
+    const h = hour.toString().padStart(2, '0');
+    const m = minute.toString().padStart(2, '0');
+    return `${h}:${m}`;
+}
+
+function isSameDate(a, b) {
+    return a && b && a.getFullYear() === b.getFullYear() && a.getMonth() === b.getMonth() && a.getDate() === b.getDate();
 }
     let eventsConfigured = false;
 
@@ -209,8 +389,7 @@ function hideCart() {
 // Ir al formulario de checkout
 function goToCheckout() {
     if (cart.length === 0) {
-        showNotification('The cart is empty', 'error');
-        return;
+        showNotification('The cart is empty. Select Reservation to book a table without items.', 'info');
     }
     
     cartElements.step1.classList.remove('active');
@@ -378,6 +557,37 @@ function validateForm() {
             markFieldInvalid(form['location-selection'], 'Please select table / bar / outside area');
             isValid = false;
         }
+    } else if (orderType === 'reservation') {
+        if (!form['reservation-date'].value) {
+            markFieldInvalid(form['reservation-date'], 'Please select reservation date');
+            isValid = false;
+        } else {
+            const selectedDate = new Date(form['reservation-date'].value + 'T00:00:00');
+            if (!getRestaurantSchedule(selectedDate)) {
+                markFieldInvalid(form['reservation-date'], 'The restaurant is closed on this day');
+                isValid = false;
+            }
+        }
+
+        if (!form['reservation-time'].value) {
+            markFieldInvalid(form['reservation-time'], 'Please select reservation time');
+            isValid = false;
+        }
+
+        if (!form['reservation-area'].value) {
+            markFieldInvalid(form['reservation-area'], 'Please select reservation area');
+            isValid = false;
+        }
+
+        if (!form['reservation-location-selection'].value) {
+            markFieldInvalid(form['reservation-location-selection'], 'Please select reservation location');
+            isValid = false;
+        }
+
+        if (!form['reservation-people'].value) {
+            markFieldInvalid(form['reservation-people'], 'Please select number of people');
+            isValid = false;
+        }
     }
 
     if (!isValid) {
@@ -403,17 +613,22 @@ function markFieldInvalid(field, message) {
 
 // Enviar pedido
 function submitOrder() {
-    if (cart.length === 0) {
-        showNotification('The cart is empty', 'error');
+    const form = cartElements.form;
+    const orderType = cartElements.orderType.value;
+
+    if (!orderType) {
+        showNotification('Please select an order type', 'error');
         return;
     }
-    
+
+    if (cart.length === 0 && orderType !== 'reservation') {
+        showNotification('The cart is empty. Add items or choose reservation only.', 'error');
+        return;
+    }
+
     if (!validateForm()) {
         return;
     }
-    
-    const form = cartElements.form;
-    const orderType = cartElements.orderType.value;
     
     // Obtener datos del formulario
     const customerName = form['customer-name'].value.trim();
@@ -435,6 +650,20 @@ function submitOrder() {
         deliveryInfo = `🍽️ *Dine In*\n` +
                        `🏷️ *Area:* ${areaLabel}\n` +
                        `📍 *Location:* ${location}\n`;
+    } else if (orderType === 'reservation') {
+        const reservationDate = form['reservation-date'].value;
+        const reservationTime = form['reservation-time'].value;
+        const reservationArea = form['reservation-area'].value;
+        const reservationLocation = form['reservation-location-selection'].value;
+        const reservationPeople = form['reservation-people'].value;
+        const areaLabel = reservationArea ? reservationArea.charAt(0).toUpperCase() + reservationArea.slice(1) : 'No preference';
+
+        deliveryInfo = `🪑 *Reservation*\n` +
+                       `📅 *Date:* ${reservationDate}\n` +
+                       `⏰ *Time:* ${reservationTime}\n` +
+                       `👥 *People:* ${reservationPeople}\n` +
+                       `🏷️ *Area:* ${areaLabel}\n` +
+                       `📍 *Location:* ${reservationLocation}\n`;
     }
 
     // Build WhatsApp message
@@ -447,16 +676,20 @@ function submitOrder() {
     message += `*ORDER DETAILS*\n`;
     message += deliveryInfo + '\n';
 
-    message += `🍽️ *ORDER*\n`;
-    cart.forEach(item => {
-        message += `- ${item.product.name} (x${item.quantity}): $ ${(item.product.price * item.quantity).toFixed(2)}\n`;
-    });
+    if (cart.length > 0) {
+        message += `🍽️ *ORDER*\n`;
+        cart.forEach(item => {
+            message += `- ${item.product.name} (x${item.quantity}): $ ${(item.product.price * item.quantity).toFixed(2)}\n`;
+        });
+        message += `\n💰 *Total: $${cart.reduce((sum, item) => sum + (item.product.price * item.quantity), 0).toFixed(2)}*\n`;
+    } else {
+        message += `📝 *Reservation only, no items selected.*\n`;
+    }
 
     if (notes) {
         message += `\n📝 *Notes:* ${notes}\n`;
     }
 
-    message += `\n💰 *Total: $${cart.reduce((sum, item) => sum + (item.product.price * item.quantity), 0).toFixed(2)}*\n`;
     message += `\nPlease confirm my order. Thank you!`;
             
     // Abrir WhatsApp 931088900 mio
@@ -482,10 +715,29 @@ function resetForm() {
         if (cartElements.orderNotes) {
             cartElements.orderNotes.value = '';
         }
+        if (cartElements.reservationTime) {
+            cartElements.reservationTime.innerHTML = '<option value="">Select</option>';
+        }
+        if (cartElements.reservationDate) {
+            cartElements.reservationDate.value = '';
+        }
+        if (cartElements.reservationArea) {
+            cartElements.reservationArea.value = '';
+        }
+        if (cartElements.reservationLocationSelect) {
+            cartElements.reservationLocationSelect.innerHTML = '<option value="">Select</option>';
+        }
+        if (cartElements.reservationPeople) {
+            cartElements.reservationPeople.value = '';
+        }
 
         if (cartElements.locationGroup) {
             cartElements.locationGroup.style.display = 'none';
         }
+        if (cartElements.reservationLocationGroup) {
+            cartElements.reservationLocationGroup.style.display = 'none';
+        }
+        hideAllDynamicFields();
     }
 }
 
