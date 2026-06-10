@@ -599,7 +599,7 @@ const products = [
         category: "gluten-free-options",
         price: 22.00,
         description: "Fish Ceviche",
-        image: "./images/menu/fish-ceviche.jpg",
+        image: "./images/menu/ceviche-pescado.jpg",
         available: true
     },
     {
